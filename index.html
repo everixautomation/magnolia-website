@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magnolia Menopause Wellness — Bloom & Thrive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5EDE4;
+      --warmWhite: #FAF7F2;
+      --sand: #E8DDD0;
+      --terracotta: #C4956A;
+      --plum: #7B4F6A;
+      --deepPlum: #5A3650;
+      --darkBrown: #2A2118;
+      --sage: #8B9E7E;
+      --warmGray: #9E958A;
+      --lavender: #9E8AAA;
+      --roseGold: #C4886A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warmWhite);
+      color: var(--darkBrown);
+      overflow-x: hidden;
+    }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .announcement-bar {
+      background: var(--deepPlum);
+      color: var(--cream);
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .announcement-bar span {
+      opacity: 0.5;
+      margin: 0 14px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 36px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.4s ease;
+    }
+
+    nav.scrolled {
+      top: 0;
+      padding: 14px 48px;
+      background: rgba(245, 237, 228, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--sand);
+      box-shadow: 0 2px 20px rgba(42,33,24,0.06);
+    }
+
+    .nav-logo img {
+      height: 36px;
+      transition: filter 0.4s ease, opacity 0.3s;
+      filter: brightness(0) invert(1);
+    }
+
+    nav.scrolled .nav-logo img {
+      filter: none;
+    }
+
+    .nav-logo-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16px;
+      letter-spacing: 3px;
+      font-weight: 600;
+      color: var(--cream);
+      text-transform: uppercase;
+      transition: color 0.4s;
+      display: none;
+    }
+
+    nav.scrolled .nav-logo-text { color: var(--darkBrown); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(245,237,228,0.85);
+      text-decoration: none;
+      transition: color 0.3s, opacity 0.3s;
+      font-weight: 500;
+    }
+
+    nav.scrolled .nav-links a { color: var(--darkBrown); opacity: 0.75; }
+    .nav-links a:hover { opacity: 1 !important; color: var(--terracotta) !important; }
+
+    .nav-cta {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 26px;
+      border: 1.5px solid rgba(245,237,228,0.5);
+      background: transparent;
+      color: var(--cream);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    nav.scrolled .nav-cta {
+      border-color: var(--deepPlum);
+      color: var(--deepPlum);
+    }
+
+    .nav-cta:hover {
+      background: var(--cream);
+      color: var(--deepPlum);
+      border-color: var(--cream);
+    }
+
+    nav.scrolled .nav-cta:hover {
+      background: var(--deepPlum);
+      color: var(--cream);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--cream);
+      transition: all 0.3s;
+    }
+
+    nav.scrolled .hamburger span { background: var(--darkBrown); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--deepPlum);
+      z-index: 999;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--cream);
+      text-decoration: none;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .mobile-menu a:hover { opacity: 1; }
+
+    .mobile-close {
+      position: absolute;
+      top: 28px;
+      right: 36px;
+      font-size: 28px;
+      color: var(--cream);
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(165deg, var(--deepPlum) 0%, var(--plum) 45%, var(--terracotta) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 160px 32px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.06);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+      font-weight: 500;
+    }
+
+    .hero-logo-lockup {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 36px;
+    }
+
+    .hero-logo-lockup img {
+      height: 60px;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+
+    .hero-h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(44px, 7vw, 82px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.08;
+      max-width: 820px;
+      margin: 0 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-h1 em {
+      font-style: italic;
+      color: rgba(245,237,228,0.7);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: rgba(245,237,228,0.7);
+      max-width: 500px;
+      line-height: 1.75;
+      margin-bottom: 52px;
+      position: relative;
+      z-index: 1;
+      font-weight: 300;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 17px 44px;
+      background: var(--cream);
+      color: var(--deepPlum);
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: #fff; transform: translateY(-1px); }
+
+    .btn-outline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 17px 44px;
+      background: transparent;
+      color: var(--cream);
+      border: 1.5px solid rgba(245,237,228,0.4);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline:hover { border-color: var(--cream); transform: translateY(-1px); }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+    }
+
+    .scroll-indicator span {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--cream), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 0.8; transform: scaleY(1.1); }
+    }
+
+    /* ── STATS BANNER ── */
+    #stats {
+      background: var(--darkBrown);
+      padding: 72px 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-number {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 52px;
+      color: var(--terracotta);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: rgba(245,237,228,0.55);
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+
+    /* ── SECTION STYLES ── */
+    .section-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 400;
+      color: var(--darkBrown);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--warmGray);
+      line-height: 1.75;
+      max-width: 540px;
+      font-weight: 300;
+    }
+
+    /* ── PRODUCTS SECTION ── */
+    #products {
+      background: var(--warmWhite);
+      padding: 100px 48px;
+    }
+
+    .products-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .products-header .section-sub {
+      margin: 0 auto;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: var(--warmWhite);
+      border: 1px solid var(--sand);
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      overflow: hidden;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 64px rgba(42,33,24,0.1);
+    }
+
+    .product-img {
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-icon {
+      width: 90px;
+      height: 170px;
+      border-radius: 45px 45px 22px 22px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 24px;
+    }
+
+    .product-icon::before {
+      content: '';
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 22px;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .product-icon-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: rgba(255,255,255,0.6);
+      font-style: italic;
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      font-weight: 600;
+      border: 1px solid currentColor;
+    }
+
+    .product-flavor {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: 0.55;
+      color: var(--darkBrown);
+      font-weight: 500;
+    }
+
+    .product-body {
+      padding: 28px 28px 32px;
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--darkBrown);
+      margin-bottom: 6px;
+    }
+
+    .product-tagline {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--warmGray);
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .product-desc {
+      font-size: 14px;
+      color: var(--warmGray);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+
+    .product-benefits {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .product-benefits li {
+      font-size: 13px;
+      color: var(--darkBrown);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--sand);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 400;
+    }
+
+    .product-benefits li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      flex-shrink: 0;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--darkBrown);
+    }
+
+    .product-price span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: var(--warmGray);
+      letter-spacing: 1px;
+    }
+
+    .btn-add {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      border: 1.5px solid var(--darkBrown);
+      background: transparent;
+      color: var(--darkBrown);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-add:hover {
+      background: var(--darkBrown);
+      color: var(--cream);
+    }
+
+    /* ── BUNDLE SECTION ── */
+    #bundle {
+      background: linear-gradient(135deg, var(--deepPlum) 0%, var(--plum) 60%, #6B4360 100%);
+      padding: 100px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #bundle::before {
+      content: '';
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.05);
+      top: 50%;
+      right: -200px;
+      transform: translateY(-50%);
+    }
+
+    .bundle-text { max-width: 480px; position: relative; z-index: 1; }
+
+    .bundle-text .section-eyebrow { color: var(--terracotta); }
+
+    .bundle-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .bundle-sub {
+      font-size: 16px;
+      color: rgba(245,237,228,0.65);
+      line-height: 1.75;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .bundle-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .bundle-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: var(--cream);
+      line-height: 1;
+    }
+
+    .bundle-was {
+      font-size: 18px;
+      color: rgba(245,237,228,0.4);
+      text-decoration: line-through;
+    }
+
+    .bundle-save {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--terracotta);
+      color: var(--cream);
+      padding: 5px 14px;
+      font-weight: 600;
+    }
+
+    .bundle-products {
+      list-style: none;
+      margin-bottom: 36px;
+    }
+
+    .bundle-products li {
+      font-size: 14px;
+      color: rgba(245,237,228,0.7);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bundle-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .bundle-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bundle-mini-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 240px;
+      backdrop-filter: blur(8px);
+    }
+
+    .bundle-mini-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .bundle-mini-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      color: var(--cream);
+      margin-bottom: 2px;
+    }
+
+    .bundle-mini-flavor {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(245,237,228,0.45);
+    }
+
+    /* ── WHY SECTION ── */
+    #why {
+      background: var(--cream);
+      padding: 100px 48px;
+      text-align: center;
+    }
+
+    .why-header { margin-bottom: 64px; }
+    .why-header .section-sub { margin: 0 auto; }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .pillar { text-align: center; }
+
+    .pillar-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pillar-icon svg { width: 36px; height: 36px; }
+
+    .pillar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--darkBrown);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .pillar-desc {
+      font-size: 13px;
+      color: var(--warmGray);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── INGREDIENTS ── */
+    #ingredients {
+      background: var(--warmWhite);
+      padding: 100px 48px;
+    }
+
+    .ingredients-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .ingredients-text .section-sub { max-width: 420px; }
+
+    .ingredients-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .ingredient-chip {
+      background: var(--cream);
+      border: 1px solid var(--sand);
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ingredient-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--darkBrown);
+      letter-spacing: 0.5px;
+    }
+
+    .ingredient-benefit {
+      font-size: 11px;
+      color: var(--warmGray);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials {
+      background: var(--darkBrown);
+      padding: 100px 48px;
+      text-align: center;
+    }
+
+    #testimonials .section-title { color: var(--cream); }
+    #testimonials .section-eyebrow { color: var(--terracotta); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 36px 32px;
+      text-align: left;
+    }
+
+    .testimonial-stars {
+      color: var(--terracotta);
+      font-size: 14px;
+      letter-spacing: 3px;
+      margin-bottom: 18px;
+    }
+
+    .testimonial-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: rgba(245,237,228,0.85);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .testimonial-author {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: 500;
+    }
+
+    .testimonial-location {
+      font-size: 11px;
+      color: rgba(245,237,228,0.3);
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+
+    /* ── QUIZ CTA ── */
+    #quiz {
+      background: var(--cream);
+      padding: 100px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #quiz::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(90,54,80,0.08);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #quiz::after {
+      content: '';
+      position: absolute;
+      width: 750px;
+      height: 750px;
+      border-radius: 50%;
+      border: 1px solid rgba(90,54,80,0.04);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .quiz-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+
+    .quiz-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(32px, 4vw, 50px);
+      color: var(--darkBrown);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .quiz-sub {
+      font-size: 16px;
+      color: var(--warmGray);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .btn-dark {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 18px 52px;
+      background: var(--deepPlum);
+      color: var(--cream);
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-dark:hover { background: var(--darkBrown); transform: translateY(-1px); }
+
+    /* ── FAQ ── */
+    #faq {
+      background: var(--warmWhite);
+      padding: 100px 48px;
+    }
+
+    .faq-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .faq-header { text-align: center; margin-bottom: 60px; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--sand);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      color: var(--darkBrown);
+      text-align: left;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .faq-question:hover { color: var(--plum); }
+
+    .faq-icon {
+      width: 22px;
+      height: 22px;
+      border: 1.5px solid var(--sand);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px;
+      color: var(--warmGray);
+      transition: all 0.3s;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      border-color: var(--plum);
+      color: var(--plum);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 400px;
+    }
+
+    .faq-answer-inner {
+      padding: 0 0 24px;
+      font-size: 15px;
+      color: var(--warmGray);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--darkBrown);
+      padding: 72px 48px 40px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand img {
+      height: 34px;
+      filter: brightness(0) invert(1) opacity(0.8);
+      margin-bottom: 20px;
+    }
+
+    .footer-brand-desc {
+      font-size: 13px;
+      color: rgba(245,237,228,0.4);
+      line-height: 1.8;
+      max-width: 260px;
+      font-weight: 300;
+    }
+
+    .footer-col-title {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(245,237,228,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--cream); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(245,237,228,0.25);
+      letter-spacing: 1px;
+    }
+
+    .footer-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      color: rgba(245,237,228,0.3);
+      font-style: italic;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .pillars { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      #bundle { flex-direction: column; gap: 48px; text-align: center; }
+      .bundle-cards { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+      .bundle-mini-card { width: 220px; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      #hero { padding: 130px 24px 80px; }
+      #stats { grid-template-columns: repeat(2, 1fr); padding: 48px 24px; }
+      .products-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+      .ingredients-inner { grid-template-columns: 1fr; gap: 48px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      #products, #bundle, #why, #ingredients, #testimonials, #quiz, #faq { padding: 72px 24px; }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .pillars { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .announcement-bar { font-size: 10px; }
+      .announcement-bar span { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-btns { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-outline { width: 240px; text-align: center; }
+      #stats { grid-template-columns: 1fr 1fr; }
+      .stat-number { font-size: 38px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    Free shipping on subscriptions
+    <span>·</span>
+    Made in Canada
+    <span>·</span>
+    30-Day Happiness Guarantee
+  </div>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a href="#hero" class="nav-logo" style="text-decoration:none;">
+      <img src="magnolia_no_bg.png" alt="Magnolia Menopause Wellness" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#products">Shop</a></li>
+      <li><a href="#ingredients">Ingredients</a></li>
+      <li><a href="#why">Our Story</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <button class="nav-cta" onclick="window.location.href='quiz.html'">Find Your Formula</button>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <span class="mobile-close" onclick="toggleMenu()">×</span>
+    <a href="#products" onclick="toggleMenu()">Shop</a>
+    <a href="#bundle" onclick="toggleMenu()">The Bundle</a>
+    <a href="#ingredients" onclick="toggleMenu()">Ingredients</a>
+    <a href="#why" onclick="toggleMenu()">Our Story</a>
+    <a href="#faq" onclick="toggleMenu()">FAQ</a>
+    <a href="#quiz" onclick="toggleMenu()" style="color: var(--terracotta); font-size:18px; letter-spacing:2px; font-family:'DM Sans'; font-size:14px; text-transform:uppercase;">Find Your Formula →</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grain"></div>
+    <div class="hero-ring" style="width:700px;height:700px;"></div>
+    <div class="hero-ring" style="width:480px;height:480px;"></div>
+    <div class="hero-ring" style="width:300px;height:300px;border-color:rgba(255,255,255,0.04);"></div>
+
+    <p class="hero-eyebrow">Science-backed &bull; Hormone-free &bull; Made in Canada</p>
+
+    <div class="hero-logo-lockup">
+      <img src="magnolia_no_bg.png" alt="Magnolia Menopause Wellness" style="height:64px; filter: brightness(0) invert(1); opacity:0.92;" />
+    </div>
+
+    <h1 class="hero-h1">
+      This chapter<br />
+      <em>is not an ending.</em>
+    </h1>
+
+    <p class="hero-sub">
+      Three functional wellness blends crafted for the hormonal shifts of perimenopause and menopause. Ancient botanicals. Modern science. Real results.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Shop the Collection</a>
+      <a href="quiz.html" class="btn-outline">Find Your Formula</a>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="stat-item">
+      <div class="stat-number">75%</div>
+      <div class="stat-label">of menopausal women<br />remain untreated</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">1B</div>
+      <div class="stat-label">women in menopause<br />globally by 2030</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">34</div>
+      <div class="stat-label">recognized symptoms<br />of menopause</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">0</div>
+      <div class="stat-label">reasons to<br />suffer in silence</div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="products-header">
+      <p class="section-eyebrow">The Collection</p>
+      <h2 class="section-title">Three blends. Every symptom.<br />One ritual.</h2>
+      <p class="section-sub">Each Magnolia blend addresses a specific cluster of menopause symptoms — sleep, skin & vitality, and cognitive clarity. Drink them daily. Stack them intentionally.</p>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- MAGNOLIA REST -->
+      <div class="product-card">
+        <div class="product-img" style="background: linear-gradient(135deg, #8B9E7E22, #9E8AAA33);">
+          <div class="product-icon" style="background: linear-gradient(to bottom, #8B9E7E88, #9E8AAA);">
+            <div class="product-icon-letter">R</div>
+          </div>
+          <div class="product-icon" style="position:absolute;display:block;width:90px;height:22px;top:calc(50% - 85px - 22px);left:50%;transform:translateX(-50%);border-radius:6px 6px 0 0;background:#8B9E7E88;height:22px;"></div>
+          <div class="product-tag" style="color: #6B8060; background: rgba(139,158,126,0.12);">Best for Sleep</div>
+          <div class="product-flavor">Lavender Chocolate</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Magnolia Rest</div>
+          <div class="product-tagline">Fall asleep. Stay asleep. Wake restored.</div>
+          <p class="product-desc">A warm lavender hot chocolate that works while you sleep. Formulated with TCM's top sleep herb and calming adaptogens to quiet a racing mind and ease night sweats.</p>
+          <ul class="product-benefits">
+            <li>Magnesium bisglycinate for deep muscle relaxation</li>
+            <li>Jujube seed (TCM's premier sleep herb)</li>
+            <li>Reishi + passionflower to ease cortisol</li>
+            <li>Shatavari for hormonal balance</li>
+            <li>L-theanine + lavender for calm focus</li>
+          </ul>
+          <div class="product-footer">
+            <div class="product-price">$44 <span>CAD / month</span></div>
+            <button class="btn-add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAGNOLIA GLOW -->
+      <div class="product-card">
+        <div class="product-img" style="background: linear-gradient(135deg, #C4956A22, #C4886A33);">
+          <div class="product-icon" style="background: linear-gradient(to bottom, #C4956A88, #C4886A);">
+            <div class="product-icon-letter">G</div>
+          </div>
+          <div class="product-tag" style="color: #A07040; background: rgba(196,149,106,0.12);">Best for Skin</div>
+          <div class="product-flavor">Rose Water</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Magnolia Glow</div>
+          <div class="product-tagline">Radiance from within, for skin that feels like you again.</div>
+          <p class="product-desc">A spa-inspired rose berry water that rebuilds collagen, brightens skin, and strengthens hair from the inside out — the beauty supplement menopause deserves.</p>
+          <ul class="product-benefits">
+            <li>Marine collagen peptides (5g) for skin elasticity</li>
+            <li>Ashwagandha KSM-66 for stress & hormonal calm</li>
+            <li>Hyaluronic acid + biotin for hydration & hair</li>
+            <li>Schisandra berry + goji — TCM skin longevity</li>
+            <li>Vitamin C from acerola cherry</li>
+          </ul>
+          <div class="product-footer">
+            <div class="product-price">$54 <span>CAD / month</span></div>
+            <button class="btn-add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAGNOLIA MIND -->
+      <div class="product-card">
+        <div class="product-img" style="background: linear-gradient(135deg, #7B4F6A22, #C4956A22);">
+          <div class="product-icon" style="background: linear-gradient(to bottom, #7B4F6A88, #5A3650);">
+            <div class="product-icon-letter">M</div>
+          </div>
+          <div class="product-tag" style="color: #6B4060; background: rgba(123,79,106,0.12);">Best for Focus</div>
+          <div class="product-flavor">Vanilla Tangerine</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Magnolia Mind</div>
+          <div class="product-tagline">Clarity, memory, and mood — reclaimed.</div>
+          <p class="product-desc">A creamy vanilla creamsicle that nourishes the brain through the fog. TCM, Ayurvedic, and adaptogenic botanicals working together to restore what the hormonal shift takes.</p>
+          <ul class="product-benefits">
+            <li>Lion's mane for neurogenesis & memory</li>
+            <li>Gotu kola — Ayurveda's brain tonic</li>
+            <li>Rhodiola + cordyceps for sustained energy</li>
+            <li>Tangerine peel (Chen Pi) for Qi circulation</li>
+            <li>Full B-vitamin complex for nerve support</li>
+          </ul>
+          <div class="product-footer">
+            <div class="product-price">$49 <span>CAD / month</span></div>
+            <button class="btn-add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BUNDLE -->
+  <section id="bundle">
+    <div class="bundle-text">
+      <p class="section-eyebrow">The Complete Ritual</p>
+      <h2 class="bundle-title">Everything your body needs.<br />One monthly delivery.</h2>
+      <p class="bundle-sub">Sleep deeply. Glow visibly. Think clearly. The Complete Ritual combines all three Magnolia blends into one intentional daily practice designed for women navigating this transition fully.</p>
+      <div class="bundle-price-row">
+        <div class="bundle-price">$119</div>
+        <div class="bundle-was">$147</div>
+        <div class="bundle-save">Save $28</div>
+      </div>
+      <ul class="bundle-products">
+        <li><span class="bundle-dot" style="background:#8B9E7E;"></span> Magnolia Rest — Lavender Chocolate</li>
+        <li><span class="bundle-dot" style="background:#C4956A;"></span> Magnolia Glow — Rose Water</li>
+        <li><span class="bundle-dot" style="background:#7B4F6A;"></span> Magnolia Mind — Vanilla Tangerine</li>
+        <li style="border:none; color: rgba(245,237,228,0.4); font-size: 12px; letter-spacing: 1px;">+ Free shipping · CAD per month on subscription</li>
+      </ul>
+      <a href="#" class="btn-primary">Get the Complete Ritual →</a>
+    </div>
+
+    <div class="bundle-cards">
+      <div class="bundle-mini-card">
+        <div class="bundle-mini-dot" style="background: linear-gradient(135deg, #8B9E7E, #9E8AAA);"></div>
+        <div>
+          <div class="bundle-mini-name">Magnolia Rest</div>
+          <div class="bundle-mini-flavor">Lavender Chocolate</div>
+        </div>
+      </div>
+      <div class="bundle-mini-card" style="margin-left: 32px;">
+        <div class="bundle-mini-dot" style="background: linear-gradient(135deg, #C4956A, #C4886A);"></div>
+        <div>
+          <div class="bundle-mini-name">Magnolia Glow</div>
+          <div class="bundle-mini-flavor">Rose Water</div>
+        </div>
+      </div>
+      <div class="bundle-mini-card">
+        <div class="bundle-mini-dot" style="background: linear-gradient(135deg, #7B4F6A, #5A3650);"></div>
+        <div>
+          <div class="bundle-mini-name">Magnolia Mind</div>
+          <div class="bundle-mini-flavor">Vanilla Tangerine</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY MAGNOLIA -->
+  <section id="why">
+    <div class="why-header">
+      <p class="section-eyebrow">Why Magnolia</p>
+      <h2 class="section-title">We built what we<br />couldn't find.</h2>
+      <p class="section-sub">The menopause supplement aisle is full of products that feel clinical, outdated, or dismissive. Magnolia is different — by design.</p>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="16" stroke="#C4956A" stroke-width="1.5"/>
+            <path d="M12 18l4 4 8-8" stroke="#C4956A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="pillar-title">Science-Backed</div>
+        <p class="pillar-desc">Every ingredient chosen for clinical evidence, not trend. Dosages that match published research, not label dressing.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 4 C10 10, 4 14, 4 22 C4 28 10 32 18 32 C26 32 32 28 32 22 C32 14 26 10 18 4Z" stroke="#C4956A" stroke-width="1.5" fill="none"/>
+            <path d="M18 12 C14 16 12 18 12 22 C12 25.3 14.7 28 18 28 C21.3 28 24 25.3 24 22 C24 18 22 16 18 12Z" stroke="#C4956A" stroke-width="1" fill="none" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+        <div class="pillar-title">Hormone-Free</div>
+        <p class="pillar-desc">Zero synthetic hormones, estrogens, or phytoestrogens. Plant-based adaptogens that support your body's own balance.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="8" width="8" height="8" rx="1" stroke="#C4956A" stroke-width="1.5"/>
+            <rect x="20" y="8" width="8" height="8" rx="1" stroke="#C4956A" stroke-width="1.5"/>
+            <rect x="8" y="20" width="8" height="8" rx="1" stroke="#C4956A" stroke-width="1.5"/>
+            <rect x="20" y="20" width="8" height="8" rx="1" stroke="#C4956A" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="pillar-title">East Meets West</div>
+        <p class="pillar-desc">TCM botanicals, Ayurvedic herbs, and Western clinical ingredients — a thousand years of women's wellness in every blend.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6 L22 14 L32 15.5 L25 22 L26.5 32 L18 27.5 L9.5 32 L11 22 L4 15.5 L14 14 Z" stroke="#C4956A" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="pillar-title">Made in Canada</div>
+        <p class="pillar-desc">Formulated and manufactured in Canada under GMP standards. Natural Product Numbers (NPNs) for every product.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INGREDIENTS -->
+  <section id="ingredients">
+    <div class="ingredients-inner">
+      <div class="ingredients-text">
+        <p class="section-eyebrow">Transparent by Design</p>
+        <h2 class="section-title">You deserve to know<br />what's in your cup.</h2>
+        <p class="section-sub" style="margin-bottom:32px;">No proprietary blends hiding weak doses. No fillers, artificial flavours, or synthetic sweeteners. Every ingredient is chosen with purpose — and we'll tell you exactly why.</p>
+        <a href="#products" class="btn-dark">Explore the Formulas</a>
+      </div>
+      <div class="ingredients-grid">
+        <div class="ingredient-chip">
+          <div class="ingredient-name">Magnesium Bisglycinate</div>
+          <div class="ingredient-benefit">Sleep · Muscle</div>
+        </div>
+        <div class="ingredient-chip">
+          <div class="ingredient-name">Lion's Mane</div>
+          <div class="ingredient-benefit">Memory · Focus</div>
+        </div>
+        <div class="ingredient-chip">
+          <div class="ingredient-name">Marine Collagen</div>
+          <div class="ingredient-benefit">Skin · Hair · Joints</div>
+        </div>
+        <div class="ingredient-chip">
+          <div class="ingredient-name">Ashwagandha KSM-66</div>
+          <div class="ingredient-benefit">Stress · Hormones</div>
+        </div>
+        <div class="ingredient-chip">
+          <div class="ingredient-name">Jujube Seed</div>
+          <div class="ingredient-benefit">TCM Sleep Herb</div>
+        </div>
+        <div class="ingredient-chip">
+          <div class="ingredient-name">Gotu Kola</div>
+          <div class="ingredient-benefit">Brain · Circulation</div>
+        </div>
+        <div class="ingredient-chip">
+          <div class="ingredient-name">Shatavari</div>
+          <div class="ingredient-benefit">Women's Balance</div>
+        </div>
+        <div class="ingredient-chip">
+          <div class="ingredient-name">Schisandra Berry</div>
+          <div class="ingredient-benefit">Skin · Vitality</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <p class="section-eyebrow">Real Women. Real Results.</p>
+    <h2 class="section-title">The transition, reimagined.</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"I've been waking up at 3am for two years. After three weeks of Magnolia Rest I'm sleeping through — and the lavender hot chocolate before bed has become my favourite ritual."</p>
+        <div class="testimonial-author">Sandra M.</div>
+        <div class="testimonial-location">Toronto, ON</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"My skin was thinning and I was losing so much hair. Magnolia Glow in the morning has completely changed my routine. Two months in and my dermatologist noticed the difference."</p>
+        <div class="testimonial-author">Christine L.</div>
+        <div class="testimonial-location">Vancouver, BC</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"The brain fog was the worst part — forgetting words mid-sentence, losing my train of thought. Magnolia Mind is the first thing that's actually made a noticeable difference in clarity."</p>
+        <div class="testimonial-author">Deborah K.</div>
+        <div class="testimonial-location">Calgary, AB</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ CTA -->
+  <section id="quiz">
+    <div class="quiz-inner">
+      <p class="section-eyebrow" style="text-align:center;">Personalized for You</p>
+      <h2 class="quiz-title">Not sure where<br />to start?</h2>
+      <p class="quiz-sub">Take our 90-second symptom quiz and we'll match you with the Magnolia blend — or blend combination — that fits your body's specific needs right now.</p>
+      <a href="quiz.html" class="btn-dark">Take the Quiz</a>
+      <p style="font-size:12px; color:var(--warmGray); margin-top:20px; letter-spacing:1px;">Free · No email required · 90 seconds</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="faq-inner">
+      <div class="faq-header">
+        <p class="section-eyebrow">Questions</p>
+        <h2 class="section-title">We'd rather you knew.</h2>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Are these products safe to use with HRT?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">All three Magnolia blends are hormone-free and designed to complement — not conflict with — HRT. That said, we always recommend discussing any new supplement regimen with your healthcare provider, especially if you are taking prescription medications.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How long before I notice results?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Most customers report noticeable changes within 2–4 weeks of consistent daily use. Sleep improvements (Rest) tend to come first, often within the first 7–10 days. Skin and hair changes (Glow) typically become visible around weeks 4–8. Cognitive effects (Mind) vary most — some notice within days, others after 3–6 weeks.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can I take all three blends together?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes — the Complete Ritual bundle is specifically designed for this. The formulas are complementary and ingredient overlaps have been considered during formulation. The suggested ritual: Magnolia Mind in the morning, Magnolia Glow mid-morning or with lunch, and Magnolia Rest in the evening before bed.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What do they taste like?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Magnolia Rest tastes like a warm lavender hot chocolate — naturally sweetened with monk fruit and raw cacao. Magnolia Glow is a light rose-berry water, refreshing and delicate. Magnolia Mind is a vanilla creamsicle — bright tangerine with creamy vanilla. All three are sweetened with monk fruit — zero sugar, no stevia bitterness.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What is your return policy?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">We offer a 30-day happiness guarantee. If you try Magnolia for 30 days and aren't satisfied, contact us and we'll make it right — full refund, no questions asked. We believe in what we've made and stand behind it completely.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do you ship across Canada?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes, we ship to all provinces and territories. Subscriptions over $75 ship free. Standard shipping typically takes 3–7 business days. Expedited options are available at checkout.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="magnolia_no_bg.png" alt="Magnolia Menopause Wellness" />
+        <p class="footer-brand-desc">Menopause wellness, reimagined. Three functional blends for women who refuse to let this chapter be anything less than extraordinary.</p>
+        <p style="font-family:'Playfair Display',serif; font-style:italic; font-size:14px; color:rgba(245,237,228,0.3); margin-top:20px;">Bloom & Thrive.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Shop</div>
+        <ul class="footer-links">
+          <li><a href="#products">Magnolia Rest</a></li>
+          <li><a href="#products">Magnolia Glow</a></li>
+          <li><a href="#products">Magnolia Mind</a></li>
+          <li><a href="#bundle">The Complete Ritual</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#why">Our Story</a></li>
+          <li><a href="#ingredients">Ingredients</a></li>
+          <li><a href="#quiz">Take the Quiz</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Support</div>
+        <ul class="footer-links">
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Magnolia Menopause Wellness Inc. · Made in Canada · All rights reserved.</p>
+      <p class="footer-tagline">Bloom & Thrive.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky nav
+    const nav = document.getElementById('main-nav');
+    const annBar = document.querySelector('.announcement-bar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Fix nav top offset for announcement bar
+    function updateNavTop() {
+      const barH = annBar.offsetHeight;
+      nav.style.top = nav.classList.contains('scrolled') ? '0' : barH + 'px';
+    }
+    window.addEventListener('scroll', updateNavTop);
+    window.addEventListener('resize', updateNavTop);
+    updateNavTop();
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+      document.body.style.overflow = document.getElementById('mobile-menu').classList.contains('open') ? 'hidden' : '';
+    }
+
+    // FAQ accordion
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

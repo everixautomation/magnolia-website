@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Your Formula — Magnolia Menopause Wellness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --cream: #F5EDE4;
+      --warmWhite: #FAF7F2;
+      --sand: #E8DDD0;
+      --terracotta: #C4956A;
+      --plum: #7B4F6A;
+      --deepPlum: #5A3650;
+      --darkBrown: #2A2118;
+      --sage: #8B9E7E;
+      --warmGray: #9E958A;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warmWhite);
+      color: var(--darkBrown);
+      overflow-x: hidden;
+    }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .announcement-bar {
+      background: var(--deepPlum);
+      color: var(--cream);
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .announcement-bar span { opacity: 0.4; margin: 0 12px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 36px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.4s ease;
+    }
+
+    nav.scrolled {
+      top: 0;
+      padding: 14px 48px;
+      background: rgba(245, 237, 228, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .nav-logo img {
+      height: 34px;
+      filter: brightness(0) invert(1);
+      transition: filter 0.4s;
+    }
+
+    nav.scrolled .nav-logo img { filter: none; }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(245,237,228,0.8);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    nav.scrolled .nav-links a { color: var(--darkBrown); opacity: 0.7; }
+    .nav-links a:hover { opacity: 1 !important; color: var(--terracotta) !important; }
+
+    .nav-back {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(245,237,228,0.6);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    nav.scrolled .nav-back { color: var(--warmGray); }
+    .nav-back:hover { color: var(--terracotta) !important; }
+
+    /* ── HERO / LANDING SECTION ── */
+    #quiz-hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--deepPlum) 0%, var(--plum) 50%, #8B5E7A 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 160px 32px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.05);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .quiz-hero-logo {
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-hero-logo img {
+      height: 56px;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(196,149,106,0.15);
+      border: 1px solid rgba(196,149,106,0.3);
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: 600;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .quiz-hero-h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(40px, 6vw, 74px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.1;
+      max-width: 780px;
+      margin: 0 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-hero-h1 em {
+      font-style: italic;
+      color: rgba(245,237,228,0.65);
+    }
+
+    .quiz-hero-sub {
+      font-size: 17px;
+      color: rgba(245,237,228,0.65);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 52px;
+      position: relative;
+      z-index: 1;
+      font-weight: 300;
+    }
+
+    .quiz-start-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 18px 56px;
+      background: var(--cream);
+      color: var(--deepPlum);
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-start-btn:hover { background: #fff; transform: translateY(-2px); }
+
+    .quiz-meta {
+      margin-top: 20px;
+      font-size: 12px;
+      color: rgba(245,237,228,0.35);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.35;
+      cursor: pointer;
+    }
+
+    .scroll-indicator span {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--cream), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* ── WHY TAKE QUIZ (trust section) ── */
+    #why-quiz {
+      background: var(--cream);
+      padding: 80px 48px;
+      text-align: center;
+    }
+
+    .why-quiz-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      max-width: 900px;
+      margin: 48px auto 0;
+    }
+
+    .why-item {}
+
+    .why-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .why-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      color: var(--darkBrown);
+      margin-bottom: 8px;
+    }
+
+    .why-desc {
+      font-size: 13px;
+      color: var(--warmGray);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── QUIZ CONTAINER ── */
+    #quiz-section {
+      background: linear-gradient(170deg, var(--deepPlum) 0%, var(--plum) 60%, #7A5070 100%);
+      min-height: 100vh;
+      padding: 80px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #quiz-section::before {
+      content: '';
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.04);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .quiz-wrapper {
+      width: 100%;
+      max-width: 680px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Progress Bar */
+    .quiz-progress {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 52px;
+    }
+
+    .quiz-progress-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(245,237,228,0.4);
+      white-space: nowrap;
+    }
+
+    .quiz-progress-bar {
+      flex: 1;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: var(--terracotta);
+      border-radius: 2px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Quiz Step */
+    .quiz-step {
+      display: none;
+      animation: fadeSlideIn 0.4s ease forwards;
+    }
+
+    .quiz-step.active { display: block; }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeSlideOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-16px); }
+    }
+
+    .quiz-step-num {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .quiz-step-q {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(26px, 4vw, 40px);
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+
+    .quiz-step-hint {
+      font-size: 13px;
+      color: rgba(245,237,228,0.45);
+      margin-bottom: 36px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Answer Cards */
+    .answer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .answer-grid.cols-1 { grid-template-columns: 1fr; }
+    .answer-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    .answer-card {
+      border: 1.5px solid rgba(255,255,255,0.12);
+      padding: 20px 22px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      background: rgba(255,255,255,0.04);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      backdrop-filter: blur(4px);
+      position: relative;
+    }
+
+    .answer-card:hover {
+      border-color: rgba(196,149,106,0.5);
+      background: rgba(196,149,106,0.08);
+      transform: translateY(-1px);
+    }
+
+    .answer-card.selected {
+      border-color: var(--terracotta);
+      background: rgba(196,149,106,0.14);
+    }
+
+    .answer-card.selected .answer-check {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+    }
+
+    .answer-card.selected .answer-check::after {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 10px;
+      border: 2px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg) translate(-1px, -1px);
+    }
+
+    .answer-check {
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    /* Square checkboxes for multi-select */
+    .answer-card.multi .answer-check {
+      border-radius: 3px;
+    }
+
+    .answer-card-content { flex: 1; }
+
+    .answer-label {
+      font-size: 15px;
+      color: var(--cream);
+      font-weight: 500;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .answer-sub {
+      font-size: 12px;
+      color: rgba(245,237,228,0.45);
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    /* Symptom grid (multi-select) */
+    .symptom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .symptom-chip {
+      border: 1.5px solid rgba(255,255,255,0.12);
+      padding: 16px 14px;
+      cursor: pointer;
+      transition: all 0.25s;
+      background: rgba(255,255,255,0.04);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .symptom-chip:hover {
+      border-color: rgba(196,149,106,0.5);
+      background: rgba(196,149,106,0.08);
+    }
+
+    .symptom-chip.selected {
+      border-color: var(--terracotta);
+      background: rgba(196,149,106,0.14);
+    }
+
+    .symptom-icon { font-size: 22px; }
+
+    .symptom-label {
+      font-size: 12px;
+      color: var(--cream);
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: 0.3px;
+    }
+
+    /* Nav Buttons */
+    .quiz-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .quiz-btn-back {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      color: rgba(245,237,228,0.35);
+      cursor: pointer;
+      padding: 12px 0;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+
+    .quiz-btn-back:hover { color: rgba(245,237,228,0.7); }
+
+    .quiz-btn-next {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 16px 44px;
+      background: var(--cream);
+      color: var(--deepPlum);
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+
+    .quiz-btn-next:hover { background: #fff; transform: translateY(-1px); }
+    .quiz-btn-next:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+
+    /* ── EMAIL STEP ── */
+    .email-step-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(196,149,106,0.12);
+      border: 1px solid rgba(196,149,106,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      font-size: 28px;
+    }
+
+    .email-input-wrap {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .email-input {
+      width: 100%;
+      padding: 18px 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .email-input::placeholder { color: rgba(245,237,228,0.3); }
+    .email-input:focus { border-color: var(--terracotta); }
+
+    .email-disclaimer {
+      font-size: 11px;
+      color: rgba(245,237,228,0.25);
+      text-align: center;
+      line-height: 1.6;
+      margin-top: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .skip-link {
+      display: block;
+      text-align: center;
+      margin-top: 16px;
+      font-size: 11px;
+      color: rgba(245,237,228,0.3);
+      cursor: pointer;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+
+    .skip-link:hover { color: rgba(245,237,228,0.6); }
+
+    /* ── RESULTS PAGE ── */
+    #results-section {
+      display: none;
+      background: var(--warmWhite);
+      padding: 100px 24px;
+    }
+
+    .results-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .results-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .results-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(32px, 4vw, 52px);
+      color: var(--darkBrown);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .results-sub {
+      font-size: 16px;
+      color: var(--warmGray);
+      line-height: 1.75;
+      max-width: 540px;
+      margin: 0 auto 60px;
+      font-weight: 300;
+    }
+
+    /* Primary recommendation */
+    .result-primary {
+      background: linear-gradient(135deg, var(--deepPlum), var(--plum));
+      padding: 52px;
+      margin-bottom: 32px;
+      text-align: left;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-primary::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.05);
+      right: -100px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .result-primary-badge {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: var(--terracotta);
+      color: var(--cream);
+      padding: 6px 16px;
+      display: inline-block;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .result-primary-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 38px;
+      color: var(--cream);
+      margin-bottom: 8px;
+      font-weight: 400;
+    }
+
+    .result-primary-flavor {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .result-primary-desc {
+      font-size: 15px;
+      color: rgba(245,237,228,0.7);
+      line-height: 1.75;
+      max-width: 420px;
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    .result-why {
+      margin-bottom: 32px;
+    }
+
+    .result-why-title {
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .result-why-list {
+      list-style: none;
+    }
+
+    .result-why-list li {
+      font-size: 14px;
+      color: rgba(245,237,228,0.75);
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 300;
+    }
+
+    .result-why-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      flex-shrink: 0;
+    }
+
+    .result-price-block { text-align: right; position: relative; z-index: 1; }
+
+    .result-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .result-price-sub {
+      font-size: 11px;
+      color: rgba(245,237,228,0.4);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .result-add-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 15px 32px;
+      background: var(--cream);
+      color: var(--deepPlum);
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .result-add-btn:hover { background: #fff; transform: translateY(-1px); }
+
+    /* Also consider */
+    .also-consider {
+      margin-top: 48px;
+      text-align: left;
+    }
+
+    .also-title {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--warmGray);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .also-card {
+      background: var(--cream);
+      border: 1px solid var(--sand);
+      padding: 24px 20px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .also-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(42,33,24,0.08);
+    }
+
+    .also-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-bottom: 16px;
+    }
+
+    .also-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--darkBrown);
+      margin-bottom: 4px;
+    }
+
+    .also-flavor {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--warmGray);
+      margin-bottom: 12px;
+    }
+
+    .also-desc {
+      font-size: 12px;
+      color: var(--warmGray);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* Bundle upsell */
+    .bundle-upsell {
+      background: var(--darkBrown);
+      padding: 48px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .bundle-upsell-text {}
+
+    .bundle-upsell-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .bundle-upsell-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .bundle-upsell-desc {
+      font-size: 13px;
+      color: rgba(245,237,228,0.5);
+      line-height: 1.6;
+      font-weight: 300;
+      max-width: 380px;
+    }
+
+    .bundle-upsell-right { text-align: right; flex-shrink: 0; }
+
+    .bundle-upsell-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .bundle-upsell-save {
+      font-size: 11px;
+      color: var(--terracotta);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .bundle-upsell-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      background: var(--terracotta);
+      color: var(--cream);
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+
+    .bundle-upsell-btn:hover { background: #D4A57A; transform: translateY(-1px); }
+
+    /* ── FOOTER MINI ── */
+    .footer-mini {
+      background: var(--darkBrown);
+      padding: 40px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-mini img {
+      height: 28px;
+      filter: brightness(0) invert(1) opacity(0.5);
+    }
+
+    .footer-mini-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-mini-links a {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(245,237,228,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-mini-links a:hover { color: rgba(245,237,228,0.7); }
+
+    .footer-mini-copy {
+      font-size: 11px;
+      color: rgba(245,237,228,0.2);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links { display: none; }
+      #quiz-hero, #quiz-section { padding-left: 20px; padding-right: 20px; }
+      #quiz-hero { padding-top: 130px; padding-bottom: 80px; }
+      .symptom-grid { grid-template-columns: repeat(3, 1fr); }
+      .answer-grid { grid-template-columns: 1fr; }
+      .result-primary { grid-template-columns: 1fr; padding: 36px 28px; }
+      .result-price-block { text-align: left; }
+      .also-grid { grid-template-columns: 1fr; }
+      .bundle-upsell { flex-direction: column; text-align: center; padding: 36px 24px; }
+      .bundle-upsell-right { text-align: center; }
+      .bundle-upsell-desc { max-width: 100%; }
+      .why-quiz-grid { grid-template-columns: 1fr; }
+      .footer-mini { flex-direction: column; gap: 20px; text-align: center; }
+      .footer-mini-links { flex-wrap: wrap; justify-content: center; }
+      #results-section { padding: 72px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .symptom-grid { grid-template-columns: repeat(2, 1fr); }
+      .quiz-step-q { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar" id="ann-bar">
+    Free shipping on subscriptions
+    <span>·</span>
+    30-Day Guarantee
+    <span>·</span>
+    Made in Canada
+  </div>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo" style="text-decoration:none;">
+      <img src="magnolia_no_bg.png" alt="Magnolia Menopause Wellness" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#products">Shop</a></li>
+      <li><a href="index.html#ingredients">Ingredients</a></li>
+      <li><a href="index.html#why">Our Story</a></li>
+    </ul>
+    <a href="index.html" class="nav-back">← Back to site</a>
+  </nav>
+
+  <!-- QUIZ HERO / LANDING SECTION -->
+  <section id="quiz-hero">
+    <div class="hero-grain"></div>
+    <div class="hero-ring" style="width:700px;height:700px;"></div>
+    <div class="hero-ring" style="width:460px;height:460px;"></div>
+
+    <div class="quiz-hero-logo">
+      <img src="magnolia_no_bg.png" alt="Magnolia Menopause Wellness" />
+    </div>
+
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      90 seconds · Completely free
+    </div>
+
+    <h1 class="quiz-hero-h1">
+      Your body is unique.<br />
+      <em>Your formula should be too.</em>
+    </h1>
+
+    <p class="quiz-hero-sub">
+      Tell us about your symptoms and we'll match you with the Magnolia blend — or combination — that fits where you are right now.
+    </p>
+
+    <button class="quiz-start-btn" onclick="startQuiz()">Find My Formula</button>
+    <p class="quiz-meta">4 questions · No purchase required</p>
+
+    <div class="scroll-indicator" onclick="startQuiz()">
+      <span>Start below</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- WHY TAKE THE QUIZ -->
+  <section id="why-quiz">
+    <p class="section-eyebrow" style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--terracotta);font-weight:600;margin-bottom:12px;">Personalized for You</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,42px);color:var(--darkBrown);font-weight:400;line-height:1.2;">Why the quiz works</h2>
+    <div class="why-quiz-grid">
+      <div class="why-item">
+        <span class="why-icon">🌿</span>
+        <div class="why-title">Symptom-matched</div>
+        <p class="why-desc">Menopause looks different for every woman. We match your blend to your specific symptom cluster — not a generic formula.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">🔬</span>
+        <div class="why-title">Science-informed</div>
+        <p class="why-desc">Each recommendation is grounded in the clinical evidence behind every ingredient — so you know exactly why we suggest what we do.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">✦</span>
+        <div class="why-title">No fluff, no upsell</div>
+        <p class="why-desc">We'll only recommend more than one product if your symptoms genuinely call for it. Honest guidance — always.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ SECTION -->
+  <section id="quiz-section">
+    <div class="quiz-wrapper">
+
+      <!-- Progress Bar -->
+      <div class="quiz-progress">
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+        <span class="quiz-progress-label" id="progress-label">Question 1 of 4</span>
+      </div>
+
+      <!-- STEP 1: Stage -->
+      <div class="quiz-step active" id="step-1">
+        <div class="quiz-step-num">Question 1 of 4</div>
+        <h2 class="quiz-step-q">What stage are you in?</h2>
+        <p class="quiz-step-hint">Choose the one that feels most like where you are now.</p>
+
+        <div class="answer-grid cols-1">
+          <div class="answer-card" data-step="1" data-value="peri" onclick="selectSingle(this, 1)">
+            <div class="answer-check"></div>
+            <div class="answer-card-content">
+              <div class="answer-label">Perimenopause</div>
+              <div class="answer-sub">My periods are changing but haven't stopped. I'm noticing symptoms starting.</div>
+            </div>
+          </div>
+          <div class="answer-card" data-step="1" data-value="meno" onclick="selectSingle(this, 1)">
+            <div class="answer-check"></div>
+            <div class="answer-card-content">
+              <div class="answer-label">Menopause</div>
+              <div class="answer-sub">My periods have stopped (or it's been over 12 months). Symptoms are active.</div>
+            </div>
+          </div>
+          <div class="answer-card" data-step="1" data-value="post" onclick="selectSingle(this, 1)">
+            <div class="answer-check"></div>
+            <div class="answer-card-content">
+              <div class="answer-label">Post-menopause</div>
+              <div class="answer-sub">I'm through the transition but still managing some lingering symptoms.</div>
+            </div>
+          </div>
+          <div class="answer-card" data-step="1" data-value="unsure" onclick="selectSingle(this, 1)">
+            <div class="answer-check"></div>
+            <div class="answer-card-content">
+              <div class="answer-label">Not sure</div>
+              <div class="answer-sub">I think something's changing but I'm not certain what stage I'm in.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-nav">
+          <span></span>
+          <button class="quiz-btn-next" id="next-1" disabled onclick="goToStep(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Symptoms (multi-select) -->
+      <div class="quiz-step" id="step-2">
+        <div class="quiz-step-num">Question 2 of 4</div>
+        <h2 class="quiz-step-q">Which symptoms bother you most?</h2>
+        <p class="quiz-step-hint">Select all that apply — we use this to personalize your formula.</p>
+
+        <div class="symptom-grid">
+          <div class="symptom-chip multi" data-symptom="hot-flashes" onclick="toggleSymptom(this)">
+            <span class="symptom-icon">🔥</span>
+            <span class="symptom-label">Hot Flashes</span>
+          </div>
+          <div class="symptom-chip multi" data-symptom="night-sweats" onclick="toggleSymptom(this)">
+            <span class="symptom-icon">🌙</span>
+            <span class="symptom-label">Night Sweats</span>
+          </div>
+          <div class="symptom-chip multi" data-symptom="sleep-issues" onclick="toggleSymptom(this)">
+            <span class="symptom-icon">😴</span>
+            <span class="symptom-label">Sleep Issues</span>
+          </div>
+          <div class="symptom-chip multi" data-symptom="mood-swings" onclick="toggleSymptom(this)">
+            <span class="symptom-icon">🌊</span>
+            <span class="symptom-label">Mood Swings</span>
+          </div>
+          <div class="symptom-chip multi" data-symptom="weight-changes" onclick="toggleSymptom(this)">
+            <span class="symptom-icon">⚖️</span>
+            <span class="symptom-label">Weight Changes</span>
+          </div>
+          <div class="symptom-chip multi" data-symptom="joint-pain" onclick="toggleSymptom(this)">
+            <span class="symptom-icon">🦴</span>
+            <span class="symptom-label">Joint Pain</span>
+          </div>
+          <div class="symptom-chip multi" data-symptom="skin-hair" onclick="toggleSymptom(this)">
+            <span class="symptom-icon">✨</span>
+            <span class="symptom-label">Skin & Hair Changes</span>
+          </div>
+          <div class="symptom-chip multi" data-symptom="brain-fog" onclick="toggleSymptom(this)">
+            <span class="symptom-icon">🧠</span>
+            <span class="symptom-label">Brain Fog</span>
+          </div>
+          <div class="symptom-chip multi" data-symptom="low-energy" onclick="toggleSymptom(this)">
+            <span class="symptom-icon">⚡</span>
+            <span class="symptom-label">Low Energy</span>
+          </div>
+        </div>
+
+        <div class="quiz-nav">
+          <button class="quiz-btn-back" onclick="goToStep(1)">← Back</button>
+          <button class="quiz-btn-next" id="next-2" disabled onclick="goToStep(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Priority -->
+      <div class="quiz-step" id="step-3">
+        <div class="quiz-step-num">Question 3 of 4</div>
+        <h2 class="quiz-step-q">What's your #1 priority right now?</h2>
+        <p class="quiz-step-hint">If you could change one thing today, what would it be?</p>
+
+        <div class="answer-grid cols-1">
+          <div class="answer-card" data-step="3" data-value="sleep" onclick="selectSingle(this, 3)">
+            <div class="answer-check"></div>
+            <div class="answer-card-content">
+              <div class="answer-label">Better sleep</div>
+              <div class="answer-sub">Fall asleep, stay asleep, and wake up actually feeling rested.</div>
+            </div>
+          </div>
+          <div class="answer-card" data-step="3" data-value="hotflashes" onclick="selectSingle(this, 3)">
+            <div class="answer-check"></div>
+            <div class="answer-card-content">
+              <div class="answer-label">Fewer hot flashes & sweats</div>
+              <div class="answer-sub">Calm the fire. Cool down the temperature swings and night drenches.</div>
+            </div>
+          </div>
+          <div class="answer-card" data-step="3" data-value="energy" onclick="selectSingle(this, 3)">
+            <div class="answer-check"></div>
+            <div class="answer-card-content">
+              <div class="answer-label">More energy & mental clarity</div>
+              <div class="answer-sub">Cut through the fog, feel sharp, and have energy that actually lasts.</div>
+            </div>
+          </div>
+          <div class="answer-card" data-step="3" data-value="myself" onclick="selectSingle(this, 3)">
+            <div class="answer-check"></div>
+            <div class="answer-card-content">
+              <div class="answer-label">Feeling like myself again</div>
+              <div class="answer-sub">My skin, my mood, my body — I want to feel whole again across everything.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-nav">
+          <button class="quiz-btn-back" onclick="goToStep(2)">← Back</button>
+          <button class="quiz-btn-next" id="next-3" disabled onclick="goToStep(4)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Prior experience -->
+      <div class="quiz-step" id="step-4">
+        <div class="quiz-step-num">Question 4 of 4</div>
+        <h2 class="quiz-step-q">Have you tried supplements before?</h2>
+        <p class="quiz-step-hint">This helps us tailor how we explain your recommendation.</p>
+
+        <div class="answer-grid cols-1">
+          <div class="answer-card" data-step="4" data-value="tried-failed" onclick="selectSingle(this, 4)">
+            <div class="answer-check"></div>
+            <div class="answer-card-content">
+              <div class="answer-label">Yes — but they didn't work</div>
+              <div class="answer-sub">I've tried things before but didn't notice much difference.</div>
+            </div>
+          </div>
+          <div class="answer-card" data-step="4" data-value="tried-helped" onclick="selectSingle(this, 4)">
+            <div class="answer-check"></div>
+            <div class="answer-card-content">
+              <div class="answer-label">Yes — and some helped</div>
+              <div class="answer-sub">I've had some success but I'm looking for something more targeted.</div>
+            </div>
+          </div>
+          <div class="answer-card" data-step="4" data-value="first-time" onclick="selectSingle(this, 4)">
+            <div class="answer-check"></div>
+            <div class="answer-card-content">
+              <div class="answer-label">No — this is my first time</div>
+              <div class="answer-sub">I'm new to supplements and want to start in the right place.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-nav">
+          <button class="quiz-btn-back" onclick="goToStep(3)">← Back</button>
+          <button class="quiz-btn-next" id="next-4" disabled onclick="goToEmail()">See My Results →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: Email (optional) -->
+      <div class="quiz-step" id="step-email">
+        <div class="email-step-icon">🌸</div>
+        <div class="quiz-step-num" style="text-align:center;">Almost there</div>
+        <h2 class="quiz-step-q" style="text-align:center;">Where should we send<br />your personalized results?</h2>
+        <p class="quiz-step-hint" style="text-align:center; margin-bottom:32px;">Get your formula recommendation plus expert tips for your symptoms — delivered straight to your inbox.</p>
+
+        <div class="email-input-wrap">
+          <input type="email" class="email-input" id="email-input" placeholder="your@email.com" />
+        </div>
+
+        <button class="quiz-btn-next" style="width:100%; font-size:13px;" onclick="submitAndShowResults()">Show My Results →</button>
+        <p class="email-disclaimer">We respect your privacy. No spam, ever. Unsubscribe anytime.</p>
+        <span class="skip-link" onclick="showResults()">Skip — just show me my results</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results-section">
+    <div class="results-inner">
+
+      <div class="results-eyebrow">Your Personalized Formula</div>
+      <h2 class="results-title" id="results-title">Your formula is ready.</h2>
+      <p class="results-sub" id="results-sub">Based on your symptoms and priorities, here's what we recommend.</p>
+
+      <!-- Primary Recommendation -->
+      <div class="result-primary" id="result-primary-card">
+        <div>
+          <div class="result-primary-badge" id="result-badge">Our Top Pick for You</div>
+          <div class="result-primary-name" id="result-name">Magnolia Rest</div>
+          <div class="result-primary-flavor" id="result-flavor">Lavender Chocolate</div>
+          <p class="result-primary-desc" id="result-desc">A warm lavender hot chocolate that works while you sleep.</p>
+          <div class="result-why">
+            <div class="result-why-title">Why this matches you</div>
+            <ul class="result-why-list" id="result-why-list">
+              <li>Matched to your sleep symptoms</li>
+            </ul>
+          </div>
+          <a href="index.html#products" class="result-add-btn" style="text-decoration:none;display:inline-block;">Add to Cart →</a>
+        </div>
+        <div class="result-price-block">
+          <div class="result-price" id="result-price">$44</div>
+          <div class="result-price-sub">CAD / month</div>
+          <div style="font-size:11px; color:rgba(245,237,228,0.3); letter-spacing:1px; margin-bottom:20px;">Free shipping included</div>
+          <a href="index.html#products" class="result-add-btn" style="text-decoration:none;display:block;text-align:center;">Get Started →</a>
+        </div>
+      </div>
+
+      <!-- Bundle upsell -->
+      <div class="bundle-upsell" id="bundle-upsell-card">
+        <div class="bundle-upsell-text">
+          <div class="bundle-upsell-label">Complete the Ritual</div>
+          <div class="bundle-upsell-title">The Complete Ritual Bundle</div>
+          <p class="bundle-upsell-desc">Sleep deeply. Glow visibly. Think clearly. Add all three Magnolia blends and address every symptom in one intentional daily practice.</p>
+        </div>
+        <div class="bundle-upsell-right">
+          <div class="bundle-upsell-price">$119</div>
+          <div class="bundle-upsell-save">Save $28 / month</div>
+          <button class="bundle-upsell-btn" onclick="window.location.href='index.html#bundle'">Upgrade to Bundle →</button>
+        </div>
+      </div>
+
+      <!-- Also consider -->
+      <div class="also-consider" id="also-consider">
+        <div class="also-title">Also worth considering</div>
+        <div class="also-grid" id="also-grid"></div>
+      </div>
+
+      <!-- Restart -->
+      <div style="text-align:center; margin-top:64px;">
+        <p style="font-size:13px; color:var(--warmGray); margin-bottom:16px;">Not quite right? Retake the quiz anytime.</p>
+        <button onclick="restartQuiz()" style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:12px 28px;background:none;border:1.5px solid var(--sand);color:var(--warmGray);cursor:pointer;transition:all 0.3s;" onmouseover="this.style.borderColor='var(--darkBrown)';this.style.color='var(--darkBrown)'" onmouseout="this.style.borderColor='var(--sand)';this.style.color='var(--warmGray)'">Retake Quiz</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER MINI -->
+  <footer class="footer-mini">
+    <img src="magnolia_no_bg.png" alt="Magnolia Menopause Wellness" />
+    <div class="footer-mini-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#products">Shop</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#why">Our Story</a>
+    </div>
+    <p class="footer-mini-copy">© 2026 Magnolia Menopause Wellness</p>
+  </footer>
+
+  <script>
+    // ── State ──
+    const answers = { stage: null, symptoms: [], priority: null, experience: null };
+    let currentStep = 0;
+
+    // ── Nav scroll ──
+    const nav = document.getElementById('main-nav');
+    const annBar = document.getElementById('ann-bar');
+
+    function updateNav() {
+      const scrolled = window.scrollY > 60;
+      nav.classList.toggle('scrolled', scrolled);
+      nav.style.top = scrolled ? '0' : annBar.offsetHeight + 'px';
+    }
+
+    window.addEventListener('scroll', updateNav);
+    window.addEventListener('resize', updateNav);
+    updateNav();
+
+    // ── Quiz flow ──
+    function startQuiz() {
+      document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function goToStep(n) {
+      const current = document.querySelector('.quiz-step.active');
+      if (current) current.classList.remove('active');
+      const next = document.getElementById('step-' + n);
+      if (next) {
+        next.classList.add('active');
+        currentStep = n;
+        updateProgress(n, 4);
+        document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function updateProgress(step, total) {
+      const pct = ((step - 1) / total) * 100;
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('progress-label').textContent = 'Question ' + step + ' of ' + total;
+    }
+
+    // Single-select
+    function selectSingle(card, step) {
+      document.querySelectorAll('[data-step="' + step + '"]').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      const val = card.dataset.value;
+      if (step === 1) answers.stage = val;
+      if (step === 3) answers.priority = val;
+      if (step === 4) answers.experience = val;
+      document.getElementById('next-' + step).disabled = false;
+    }
+
+    // Multi-select symptoms
+    function toggleSymptom(chip) {
+      chip.classList.toggle('selected');
+      answers.symptoms = Array.from(document.querySelectorAll('.symptom-chip.selected')).map(c => c.dataset.symptom);
+      document.getElementById('next-2').disabled = answers.symptoms.length === 0;
+    }
+
+    function goToEmail() {
+      const current = document.querySelector('.quiz-step.active');
+      if (current) current.classList.remove('active');
+      document.getElementById('step-email').classList.add('active');
+      document.getElementById('progress-fill').style.width = '100%';
+      document.getElementById('progress-label').textContent = 'Almost done';
+      document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function submitAndShowResults() {
+      const email = document.getElementById('email-input').value.trim();
+      // In production, POST email to your email service here
+      // For now, just proceed to results
+      showResults();
+    }
+
+    function showResults() {
+      document.getElementById('quiz-section').style.display = 'none';
+      document.getElementById('results-section').style.display = 'block';
+      buildResults();
+      document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ── Recommendation Logic ──
+    const PRODUCTS = {
+      rest: {
+        name: 'Magnolia Rest',
+        flavor: 'Lavender Chocolate',
+        price: '$44',
+        desc: 'A warm lavender hot chocolate that works while you sleep. Magnesium, jujube seed, reishi, and L-theanine quiet a racing mind and ease night-time temperature swings.',
+        color: 'linear-gradient(135deg, #8B9E7E, #9E8AAA)',
+        whyMap: {
+          'sleep-issues': 'Magnesium bisglycinate & L-theanine target your sleep issues directly',
+          'night-sweats': 'Shatavari & reishi are clinically linked to reduced night sweat intensity',
+          'mood-swings': 'Passionflower calms cortisol-driven mood fluctuations before bed',
+          'hot-flashes': 'Shatavari supports hormonal balance to reduce vasomotor symptoms',
+          'sleep': 'Sleep is your #1 priority — Rest is built exactly for this',
+        }
+      },
+      glow: {
+        name: 'Magnolia Glow',
+        flavor: 'Rose Water',
+        price: '$54',
+        desc: 'A light rose-berry water that rebuilds collagen, brightens skin, and strengthens hair from the inside out. Marine collagen, ashwagandha, and schisandra berry — the beauty supplement menopause deserves.',
+        color: 'linear-gradient(135deg, #C4956A, #C4886A)',
+        whyMap: {
+          'skin-hair': 'Marine collagen (5g) + biotin + hyaluronic acid directly address your skin & hair changes',
+          'hot-flashes': 'Ashwagandha KSM-66 is one of the most studied herbs for hot flash reduction',
+          'joint-pain': 'Hyaluronic acid + collagen support joint cushioning and flexibility',
+          'weight-changes': 'Schisandra berry supports metabolic balance during the transition',
+          'hotflashes': 'Reducing hot flashes is your priority — ashwagandha & shatavari in Glow are your allies',
+        }
+      },
+      mind: {
+        name: 'Magnolia Mind',
+        flavor: 'Vanilla Tangerine',
+        price: '$49',
+        desc: 'A creamy vanilla creamsicle that cuts through the fog. Lion\'s mane, gotu kola, rhodiola, and a full B-complex restore clarity, memory, and sustained energy.',
+        color: 'linear-gradient(135deg, #7B4F6A, #5A3650)',
+        whyMap: {
+          'brain-fog': 'Lion\'s mane promotes neurogenesis — the science-backed answer to cognitive fog',
+          'low-energy': 'Rhodiola & cordyceps provide sustained energy without stimulants',
+          'mood-swings': 'Gotu kola & B-vitamins stabilize mood through the nervous system',
+          'energy': 'Energy and clarity are your priority — Mind delivers both without caffeine',
+          'myself': 'Feeling whole again starts with your mind — clarity unlocks everything else',
+        }
+      },
+      bundle: {
+        name: 'The Complete Ritual',
+        flavor: 'All Three Blends',
+        price: '$119',
+        desc: 'Sleep deeply. Glow visibly. Think clearly. Every Magnolia blend working together as one intentional daily ritual — the most complete response to menopause wellness.',
+        color: 'linear-gradient(135deg, #5A3650, #7B4F6A)',
+        whyMap: {
+          'myself': 'Feeling like yourself again requires addressing all symptom clusters — the bundle does exactly that',
+          'multi': 'You\'re managing symptoms across multiple areas — the complete ritual addresses them all',
+        }
+      }
+    };
+
+    function buildResults() {
+      // Score products
+      const scores = { rest: 0, glow: 0, mind: 0 };
+      const syms = answers.symptoms;
+      const pri = answers.priority;
+
+      // Symptom scoring
+      if (syms.includes('sleep-issues')) scores.rest += 3;
+      if (syms.includes('night-sweats')) { scores.rest += 2; scores.glow += 1; }
+      if (syms.includes('hot-flashes')) { scores.glow += 2; scores.rest += 1; }
+      if (syms.includes('skin-hair')) scores.glow += 3;
+      if (syms.includes('joint-pain')) scores.glow += 2;
+      if (syms.includes('brain-fog')) scores.mind += 3;
+      if (syms.includes('low-energy')) scores.mind += 2;
+      if (syms.includes('mood-swings')) { scores.mind += 1; scores.rest += 1; }
+      if (syms.includes('weight-changes')) scores.glow += 1;
+
+      // Priority scoring (double weight)
+      if (pri === 'sleep') scores.rest += 4;
+      if (pri === 'hotflashes') scores.glow += 4;
+      if (pri === 'energy') scores.mind += 4;
+      if (pri === 'myself') { scores.rest += 1; scores.glow += 1; scores.mind += 1; }
+
+      // Determine recommendation
+      const maxScore = Math.max(scores.rest, scores.glow, scores.mind);
+      const total = scores.rest + scores.glow + scores.mind;
+      const allSimilar = (maxScore - Math.min(scores.rest, scores.glow, scores.mind)) <= 3;
+      const manySymptoms = syms.length >= 5;
+      const wantsAll = pri === 'myself';
+
+      let primary;
+      let alsoProducts = [];
+
+      if (wantsAll || (manySymptoms && allSimilar)) {
+        primary = 'bundle';
+      } else if (scores.rest >= maxScore) {
+        primary = 'rest';
+        alsoProducts = ['glow', 'mind'].filter(p => scores[p] > 2);
+      } else if (scores.glow >= maxScore) {
+        primary = 'glow';
+        alsoProducts = ['rest', 'mind'].filter(p => scores[p] > 2);
+      } else {
+        primary = 'mind';
+        alsoProducts = ['rest', 'glow'].filter(p => scores[p] > 2);
+      }
+
+      const prod = PRODUCTS[primary];
+
+      // Build why-list
+      const whyReasons = [];
+      if (prod.whyMap[pri]) whyReasons.push(prod.whyMap[pri]);
+      syms.forEach(s => {
+        if (prod.whyMap[s] && whyReasons.length < 4) whyReasons.push(prod.whyMap[s]);
+      });
+      if (primary === 'bundle' && prod.whyMap['multi'] && !whyReasons.includes(prod.whyMap['multi'])) {
+        whyReasons.unshift(prod.whyMap['multi']);
+      }
+      if (whyReasons.length === 0) whyReasons.push('This blend is the strongest match for your symptom profile');
+
+      // Render primary
+      document.getElementById('result-name').textContent = prod.name;
+      document.getElementById('result-flavor').textContent = prod.flavor;
+      document.getElementById('result-desc').textContent = prod.desc;
+      document.getElementById('result-price').textContent = prod.price;
+      document.getElementById('result-primary-card').style.background = prod.color.replace('135deg', '135deg, #5A3650 0%');
+
+      // Fix gradient for bundle
+      if (primary === 'bundle') {
+        document.getElementById('result-primary-card').style.background = 'linear-gradient(135deg, #2A2118, #5A3650)';
+        document.getElementById('result-primary-card').querySelector('.result-price-sub').textContent = 'CAD / month · Saves $28';
+        document.getElementById('bundle-upsell-card').style.display = 'none';
+      }
+
+      const whyList = document.getElementById('result-why-list');
+      whyList.innerHTML = whyReasons.map(r => `<li>${r}</li>`).join('');
+
+      // Personalized title
+      const titles = {
+        rest: 'You need rest — real, deep rest.',
+        glow: 'Your glow is waiting to come back.',
+        mind: 'Your clarity is within reach.',
+        bundle: 'You deserve the complete picture.'
+      };
+      document.getElementById('results-title').textContent = titles[primary];
+
+      const subs = {
+        rest: 'Your symptoms point clearly to sleep disruption as the core issue. Here\'s what we recommend.',
+        glow: 'Your body is asking for nourishment from within. Here\'s the formula built for that.',
+        mind: 'The fog is real — and it\'s addressable. Here\'s what the science says to use.',
+        bundle: 'You\'re navigating symptoms across every dimension. The complete ritual addresses them all.'
+      };
+      document.getElementById('results-sub').textContent = subs[primary];
+
+      // Also consider
+      if (alsoProducts.length > 0) {
+        const alsoData = {
+          rest: { color: '#8B9E7E', desc: 'For deep sleep and night-time calm.' },
+          glow: { color: '#C4956A', desc: 'For skin, hair, and collagen support.' },
+          mind: { color: '#7B4F6A', desc: 'For clarity, memory, and energy.' }
+        };
+        document.getElementById('also-grid').innerHTML = alsoProducts.map(p => {
+          const pd = PRODUCTS[p];
+          const ad = alsoData[p];
+          return `
+            <div class="also-card" onclick="window.location.href='index.html#products'">
+              <div class="also-dot" style="background:${ad.color};"></div>
+              <div class="also-name">${pd.name}</div>
+              <div class="also-flavor">${pd.flavor}</div>
+              <p class="also-desc">${ad.desc}</p>
+            </div>`;
+        }).join('');
+      } else {
+        document.getElementById('also-consider').style.display = 'none';
+      }
+    }
+
+    function restartQuiz() {
+      answers.stage = null;
+      answers.symptoms = [];
+      answers.priority = null;
+      answers.experience = null;
+
+      document.querySelectorAll('.answer-card.selected').forEach(c => c.classList.remove('selected'));
+      document.querySelectorAll('.symptom-chip.selected').forEach(c => c.classList.remove('selected'));
+      document.querySelectorAll('.quiz-btn-next').forEach(b => b.disabled = true);
+
+      document.getElementById('results-section').style.display = 'none';
+      document.getElementById('quiz-section').style.display = 'flex';
+      document.getElementById('also-consider').style.display = '';
+      document.getElementById('bundle-upsell-card').style.display = '';
+
+      goToStep(1);
+      document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
