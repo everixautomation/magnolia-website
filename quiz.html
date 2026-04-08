@@ -183,9 +183,9 @@
     .blur-lock-icon { font-size:28px; }
     .blur-unlock-text { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(245,237,228,0.85); font-weight:600; }
     /* Phone input */
-    .phone-input { width:100%; padding:18px 20px; background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.15); color:var(--cream); font-family:'DM Sans',sans-serif; font-size:15px; outline:none; transition:border-color 0.3s; margin-bottom:12px; }
-    .phone-input::placeholder { color:rgba(245,237,228,0.3); }
-    .phone-input:focus { border-color:var(--terracotta); }
+    .dob-input { width:100%; padding:18px 20px; background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.15); color:var(--cream); font-family:'DM Sans',sans-serif; font-size:15px; outline:none; transition:border-color 0.3s; margin-bottom:12px; color-scheme:dark; }
+    .dob-input:focus { border-color:var(--terracotta); }
+    .dob-label { display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(245,237,228,0.4); margin-bottom:6px; text-align:left; font-weight:500; }
     /* Mid-quiz interstitial */
     .interstitial-content { text-align:center; padding:20px 0; }
     .interstitial-icon { font-size:52px; display:block; margin-bottom:20px; animation:gentlePulse 2s ease-in-out infinite; }
@@ -372,7 +372,8 @@
         <p class="quiz-step-hint" style="text-align:center;margin-bottom:32px;font-size:14px;color:rgba(245,237,228,0.55);">Enter your details to unlock your personalized protocol — your herb guide, daily ritual, and free 7-day starter plan.</p>
         <input type="text" class="email-name-input" id="first-name-input" placeholder="First name" />
         <input type="email" class="email-input" id="email-input" placeholder="Your best email address" />
-        <input type="tel" class="phone-input" id="phone-input" placeholder="Phone number (optional — get your result by text too)" />
+        <label class="dob-label" for="dob-input">Date of birth</label>
+        <input type="date" class="dob-input" id="dob-input" />
         <button class="email-submit-btn" onclick="submitEmail()">Unlock My Free Protocol →</button>
         <p class="email-disclaimer">We respect your privacy. No spam, ever. Unsubscribe anytime. Your result will also appear on screen immediately.</p>
       </div>
@@ -544,10 +545,13 @@
       document.getElementById('progress-label').textContent='Almost done';
       document.getElementById('quiz-section').scrollIntoView({behavior:'smooth',block:'start'});
     }
+    // ── GOOGLE SHEETS CONFIG ── Paste your Apps Script Web App URL here after setup
+    const SHEETS_URL = '';
+
     function submitEmail(){
       const email     = document.getElementById('email-input').value.trim();
       const firstName = document.getElementById('first-name-input').value.trim();
-      const phone     = document.getElementById('phone-input').value.trim();
+      const dob       = document.getElementById('dob-input').value;
       const t         = TYPES[resultType];
       const btn       = document.querySelector('.email-submit-btn');
 
@@ -561,24 +565,38 @@
         document.getElementById('email-input').style.border = '2px solid #E090A8';
         return;
       }
+      if (!dob) {
+        document.getElementById('dob-input').focus();
+        document.getElementById('dob-input').style.border = '2px solid #E090A8';
+        return;
+      }
 
       btn.textContent = 'Sending your protocol...';
       btn.disabled = true;
 
-      const templateParams = {
+      // Log to Google Sheets (fire and forget — doesn't block the email)
+      if (SHEETS_URL) {
+        fetch(SHEETS_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: firstName, email: email, dob: dob, type: t.name, date: new Date().toISOString() }),
+        }).catch(() => {});
+      }
+
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
         to_email:      email,
         to_name:       firstName,
-        phone_number:  phone || '',
         type_name:     t.name,
         type_emoji:    t.emoji,
         type_tagline:  t.tagline,
         pdf_url:       PDF_URLS[resultType],
         discount_code: 'MYTYPE',
-      };
-
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams).then(() => {
+      }).then(() => {
         if (EMAILJS_FOLLOWUP_TEMPLATE_ID) {
-          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_FOLLOWUP_TEMPLATE_ID, templateParams).catch(() => {});
+          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_FOLLOWUP_TEMPLATE_ID, {
+            to_email: email, to_name: firstName, type_name: t.name,
+          }).catch(() => {});
         }
         showResults();
       }).catch((err) => {
@@ -630,7 +648,7 @@
       document.querySelectorAll('.answer-card').forEach(c=>c.classList.remove('selected'));
       document.getElementById('first-name-input').value='';
       document.getElementById('email-input').value='';
-      document.getElementById('phone-input').value='';
+      document.getElementById('dob-input').value='';
       document.getElementById('testimonial-slot').innerHTML='';
       // Reset interstitial dots
       document.querySelectorAll('#interstitial-dots .interstitial-dot').forEach((d,i)=>{d.classList.toggle('lit',i<4);});
