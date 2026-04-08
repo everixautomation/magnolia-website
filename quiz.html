@@ -312,7 +312,6 @@
         <input type="email" class="email-input" id="email-input" placeholder="Your best email address" />
         <button class="email-submit-btn" onclick="submitEmail()">Get My Free Protocol →</button>
         <p class="email-disclaimer">We respect your privacy. No spam, ever. Unsubscribe anytime. Your result will also appear on screen immediately.</p>
-        <span class="skip-link" onclick="showResults()">Skip — just show me my results</span>
       </div>
     </div>
   </section>
@@ -452,14 +451,23 @@
       const t         = TYPES[resultType];
       const btn       = document.querySelector('.email-submit-btn');
 
-      if (!email) { document.getElementById('email-input').focus(); return; }
+      if (!firstName) {
+        document.getElementById('first-name-input').focus();
+        document.getElementById('first-name-input').style.border = '2px solid #E090A8';
+        return;
+      }
+      if (!email) {
+        document.getElementById('email-input').focus();
+        document.getElementById('email-input').style.border = '2px solid #E090A8';
+        return;
+      }
 
       btn.textContent = 'Sending your protocol...';
       btn.disabled = true;
 
       emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
         to_email:    email,
-        to_name:     firstName || 'there',
+        to_name:     firstName,
         type_name:   t.name,
         type_emoji:  t.emoji,
         type_tagline: t.tagline,
@@ -469,8 +477,8 @@
         showResults();
       }).catch((err) => {
         console.error('EmailJS error:', err);
-        // Still show results even if email fails
-        showResults();
+        btn.textContent = 'Something went wrong — please try again';
+        btn.disabled = false;
       });
     }
     function showResults(){
