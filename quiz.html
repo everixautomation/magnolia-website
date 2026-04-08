@@ -566,22 +566,14 @@
       btn.disabled = true;
 
       const templateParams = {
-        to_email:       email,
-        to_name:        firstName,
-        phone_number:   phone || '',
-        type_name:      t.name,
-        type_emoji:     t.emoji,
-        type_tagline:   t.tagline,
-        herb_1:         t.herbs[0].name,
-        herb_2:         t.herbs[1].name,
-        herb_3:         t.herbs[2].name,
-        herb_4:         t.herbs[3].name,
-        ritual_preview: t.ritual.split('.')[0] + '.',
-        day_1_task:     t.days[0],
-        product_name:   t.product,
-        product_price:  t.productPrice,
-        pdf_url:        PDF_URLS[resultType],
-        discount_code:  'MYTYPE',
+        to_email:      email,
+        to_name:       firstName,
+        phone_number:  phone || '',
+        type_name:     t.name,
+        type_emoji:    t.emoji,
+        type_tagline:  t.tagline,
+        pdf_url:       PDF_URLS[resultType],
+        discount_code: 'MYTYPE',
       };
 
       emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams).then(() => {
