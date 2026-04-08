@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -401,6 +402,20 @@
     };
     const ALSO_DATA={nightBurner:{name:"Magnolia Rest",flavor:"Lavender Chocolate",price:"$44",desc:"For deep sleep and night-time calm.",dot:"#8B7E9E",url:"index.html#products"},fadingGlow:{name:"Magnolia Glow",flavor:"Rose Water",price:"$54",desc:"For skin, hair, and collagen support.",dot:"#C4956A",url:"index.html#products"},foggyMind:{name:"Magnolia Mind",flavor:"Vanilla Tangerine",price:"$49",desc:"For clarity, memory, and sustained energy.",dot:"#C49340",url:"index.html#products"}};
 
+    // ── EMAILJS CONFIG ── Replace these three values from your EmailJS dashboard
+    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // Account > API Keys
+    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // Email Services tab
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // Email Templates tab
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    const PDF_URLS = {
+      nightBurner: 'https://magnoliamenopause.com/protocols/night-burner.pdf',
+      fadingGlow:  'https://magnoliamenopause.com/protocols/fading-glow.pdf',
+      foggyMind:   'https://magnoliamenopause.com/protocols/foggy-mind.pdf',
+      storm:       'https://magnoliamenopause.com/protocols/the-storm.pdf',
+      earlyShift:  'https://magnoliamenopause.com/protocols/early-shift.pdf',
+    };
+
     let scores={nightBurner:0,fadingGlow:0,foggyMind:0,storm:0,earlyShift:0},resultType=null;
     const nav=document.getElementById('main-nav'),annBar=document.querySelector('.announcement-bar');
     function updateNav(){const s=window.scrollY>60;nav.classList.toggle('scrolled',s);nav.style.top=s?'0':annBar.offsetHeight+'px';}
@@ -432,8 +447,31 @@
       document.getElementById('quiz-section').scrollIntoView({behavior:'smooth',block:'start'});
     }
     function submitEmail(){
-      // TODO: Connect to Klaviyo — POST email + firstName + menopause_type (resultType) to your list
-      showResults();
+      const email     = document.getElementById('email-input').value.trim();
+      const firstName = document.getElementById('first-name-input').value.trim();
+      const t         = TYPES[resultType];
+      const btn       = document.querySelector('.email-submit-btn');
+
+      if (!email) { document.getElementById('email-input').focus(); return; }
+
+      btn.textContent = 'Sending your protocol...';
+      btn.disabled = true;
+
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        to_email:    email,
+        to_name:     firstName || 'there',
+        type_name:   t.name,
+        type_emoji:  t.emoji,
+        type_tagline: t.tagline,
+        pdf_url:     PDF_URLS[resultType],
+        discount_code: 'MYTYPE',
+      }).then(() => {
+        showResults();
+      }).catch((err) => {
+        console.error('EmailJS error:', err);
+        // Still show results even if email fails
+        showResults();
+      });
     }
     function showResults(){
       document.getElementById('quiz-section').style.display='none';
