@@ -592,7 +592,8 @@
         showResults();
       }).catch((err) => {
         console.error('EmailJS error:', err);
-        btn.textContent = 'Something went wrong — please try again';
+        const msg = (err && err.text) ? err.text : (err && err.status ? 'Status ' + err.status : JSON.stringify(err));
+        btn.textContent = 'Error: ' + msg;
         btn.disabled = false;
       });
     }
