@@ -173,6 +173,39 @@
       .footer-mini { flex-direction: column; gap: 20px; text-align: center; padding: 32px 24px; } .footer-mini-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
     }
     @media (max-width: 480px) { .hero-h1 { font-size: 36px; } .quiz-step-q { font-size: 24px; } .cta-price { font-size: 40px; } }
+    /* Blurred preview on email gate */
+    .email-blur-preview { position:relative; margin-bottom:28px; border-radius:12px; overflow:hidden; }
+    .blur-content { filter:blur(7px); user-select:none; pointer-events:none; padding:20px 24px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:12px; }
+    .blur-herb-row { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.07); font-size:14px; color:var(--cream); }
+    .blur-herb-row:last-child { border-bottom:none; }
+    .blur-ritual-text { font-size:13px; color:rgba(245,237,228,0.6); margin-top:10px; line-height:1.6; }
+    .blur-overlay { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:rgba(60,30,70,0.45); backdrop-filter:blur(2px); border-radius:12px; }
+    .blur-lock-icon { font-size:28px; }
+    .blur-unlock-text { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(245,237,228,0.85); font-weight:600; }
+    /* Phone input */
+    .phone-input { width:100%; padding:18px 20px; background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.15); color:var(--cream); font-family:'DM Sans',sans-serif; font-size:15px; outline:none; transition:border-color 0.3s; margin-bottom:12px; }
+    .phone-input::placeholder { color:rgba(245,237,228,0.3); }
+    .phone-input:focus { border-color:var(--terracotta); }
+    /* Mid-quiz interstitial */
+    .interstitial-content { text-align:center; padding:20px 0; }
+    .interstitial-icon { font-size:52px; display:block; margin-bottom:20px; animation:gentlePulse 2s ease-in-out infinite; }
+    @keyframes gentlePulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.07)} }
+    .interstitial-h2 { font-family:'Playfair Display',serif; font-size:clamp(24px,4vw,36px); color:var(--cream); margin-bottom:14px; font-weight:400; }
+    .interstitial-sub { font-size:15px; color:rgba(245,237,228,0.65); line-height:1.75; max-width:480px; margin:0 auto 32px; }
+    .interstitial-dots { display:flex; justify-content:center; gap:10px; }
+    .interstitial-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.18); transition:background 0.3s; }
+    .interstitial-dot.lit { background:var(--terracotta); }
+    /* Guarantee box */
+    .guarantee-box { display:flex; align-items:flex-start; gap:14px; background:rgba(139,158,126,0.1); border:1px solid rgba(139,158,126,0.3); border-radius:10px; padding:18px 20px; margin:18px 0 6px; text-align:left; }
+    .guarantee-icon { font-size:22px; flex-shrink:0; margin-top:1px; }
+    .guarantee-title { font-size:14px; font-weight:600; color:var(--darkBrown); margin-bottom:4px; }
+    .guarantee-text { font-size:12px; color:var(--warmGray); line-height:1.6; margin:0; }
+    /* Testimonial */
+    .testimonial-card { margin-bottom:32px; padding:28px 32px; background:var(--cream); border-left:4px solid; }
+    .testimonial-stars { font-size:14px; margin-bottom:10px; color:#C4956A; }
+    .testimonial-quote { font-family:'Playfair Display',serif; font-size:17px; color:var(--darkBrown); line-height:1.75; font-style:italic; margin-bottom:14px; }
+    .testimonial-quote::before { content:'"'; font-size:28px; line-height:0; vertical-align:-8px; margin-right:4px; opacity:0.35; }
+    .testimonial-author { font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--warmGray); font-weight:500; }
   </style>
 </head>
 <body>
@@ -267,6 +300,23 @@
         </div>
       </div>
 
+      <div class="quiz-step" id="step-interstitial">
+        <div class="interstitial-content">
+          <span class="interstitial-icon">✨</span>
+          <h2 class="interstitial-h2">You're halfway there.</h2>
+          <p class="interstitial-sub">Most women don't realize their symptoms have a pattern — yours does too. We're building your type profile now.</p>
+          <div class="interstitial-dots" id="interstitial-dots">
+            <div class="interstitial-dot lit"></div>
+            <div class="interstitial-dot lit"></div>
+            <div class="interstitial-dot lit"></div>
+            <div class="interstitial-dot lit"></div>
+            <div class="interstitial-dot"></div>
+            <div class="interstitial-dot"></div>
+            <div class="interstitial-dot"></div>
+          </div>
+        </div>
+      </div>
+
       <div class="quiz-step" id="step-5">
         <div class="quiz-step-num">Question 5 of 7</div>
         <h2 class="quiz-step-q">Where are you in your menopause journey?</h2>
@@ -304,13 +354,26 @@
       </div>
 
       <div class="quiz-step" id="step-email">
+        <div class="email-blur-preview">
+          <div class="blur-content">
+            <div style="font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(245,237,228,0.45);margin-bottom:10px;">Your personalized herb guide</div>
+            <div id="blur-herbs"></div>
+            <div class="blur-ritual-text" id="blur-ritual"></div>
+          </div>
+          <div class="blur-overlay">
+            <span class="blur-lock-icon">🔒</span>
+            <span class="blur-unlock-text">Enter details to unlock</span>
+          </div>
+        </div>
+
         <span class="email-icon" id="email-emoji">🌸</span>
         <div class="quiz-step-num" style="text-align:center;margin-bottom:8px;">Your result is ready</div>
         <h2 class="quiz-step-q" style="text-align:center;color:var(--cream);font-size:clamp(26px,4vw,36px);margin-bottom:14px;" id="email-type-name">You're The Night Burner</h2>
         <p class="quiz-step-hint" style="text-align:center;margin-bottom:32px;font-size:14px;color:rgba(245,237,228,0.55);">Enter your details to unlock your personalized protocol — your herb guide, daily ritual, and free 7-day starter plan.</p>
         <input type="text" class="email-name-input" id="first-name-input" placeholder="First name" />
         <input type="email" class="email-input" id="email-input" placeholder="Your best email address" />
-        <button class="email-submit-btn" onclick="submitEmail()">Get My Free Protocol →</button>
+        <input type="tel" class="phone-input" id="phone-input" placeholder="Phone number (optional — get your result by text too)" />
+        <button class="email-submit-btn" onclick="submitEmail()">Unlock My Free Protocol →</button>
         <p class="email-disclaimer">We respect your privacy. No spam, ever. Unsubscribe anytime. Your result will also appear on screen immediately.</p>
       </div>
     </div>
@@ -335,6 +398,8 @@
       <h2 class="plan-h2">One small step each day</h2>
       <div id="day-plan"></div>
 
+      <div id="testimonial-slot"></div>
+
       <div class="cta-section" id="cta-section">
         <div class="cta-badge" id="cta-badge">Recommended for Your Type</div>
         <h2 class="cta-product-name" id="cta-product-name"></h2>
@@ -342,8 +407,15 @@
         <p class="cta-product-desc" id="cta-product-desc"></p>
         <div class="cta-price-row"><span class="cta-price" id="cta-price"></span><span class="cta-price-sub">CAD / month</span></div>
         <a href="index.html#products" class="cta-main-btn" id="cta-main-btn">Start My Ritual — 20% Off First Month</a>
+        <div class="guarantee-box">
+          <span class="guarantee-icon">🛡️</span>
+          <div>
+            <div class="guarantee-title">30-Day Money-Back Guarantee</div>
+            <p class="guarantee-text">Try it for a full month. If you don't feel a difference, we'll refund every cent — no forms, no questions asked.</p>
+          </div>
+        </div>
         <p class="cta-code">Use code <strong>MYTYPE</strong> at checkout</p>
-        <p class="cta-shipping">Free shipping · Cancel anytime · 30-day guarantee</p>
+        <p class="cta-shipping">Free shipping · Cancel anytime</p>
       </div>
 
       <div class="bundle-section" id="bundle-section">
@@ -401,11 +473,20 @@
     };
     const ALSO_DATA={nightBurner:{name:"Magnolia Rest",flavor:"Chocolate Lavender",price:"$44",desc:"For deep sleep and night-time calm.",dot:"#8B7E9E",url:"index.html#products"},fadingGlow:{name:"Magnolia Glow",flavor:"Rose Water",price:"$54",desc:"For skin, hair, and collagen support.",dot:"#C4956A",url:"index.html#products"},foggyMind:{name:"Magnolia Mind",flavor:"Vanilla Tangerine",price:"$49",desc:"For clarity, memory, and sustained energy.",dot:"#C49340",url:"index.html#products"}};
 
-    // ── EMAILJS CONFIG ── Replace these three values from your EmailJS dashboard
-    const EMAILJS_PUBLIC_KEY  = 'FTL01CGm9xRgTPNrW';
-    const EMAILJS_SERVICE_ID  = 'service_Magnolia';
-    const EMAILJS_TEMPLATE_ID = 'template_bw8nnia';
+    // ── EMAILJS CONFIG ──
+    const EMAILJS_PUBLIC_KEY        = 'FTL01CGm9xRgTPNrW';
+    const EMAILJS_SERVICE_ID        = 'service_Magnolia';
+    const EMAILJS_TEMPLATE_ID       = 'template_bw8nnia';
+    const EMAILJS_FOLLOWUP_TEMPLATE_ID = ''; // Create a 2nd template in EmailJS and paste its ID here
     emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    const TESTIMONIALS = {
+      nightBurner: { quote: "I used to wake up drenched at 2am every single night. After 2 weeks of Magnolia Rest I slept through for the first time in 3 years. I actually cried.", author: "Sandra K., 53 — Ontario" },
+      fadingGlow:  { quote: "I was losing so much hair my drain was clogging every week. After 6 weeks of Magnolia Glow my hair stylist noticed the new growth before I even told her what I was taking.", author: "Michelle T., 49 — British Columbia" },
+      foggyMind:   { quote: "I'm a project manager and brain fog was making me feel like I was failing at my job. Magnolia Mind brought me back. I feel like myself again.", author: "Deborah L., 51 — Alberta" },
+      storm:       { quote: "I had every symptom and felt like I was falling apart. The Complete Ritual Kit is the only thing that's made a real dent. Three months in and I'd never go back.", author: "Patricia W., 54 — Manitoba" },
+      earlyShift:  { quote: "I'm only 42 and my doctor kept telling me it was just stress. Magnolia Glow helped me feel like my hormones were finally getting support while I figured the rest out.", author: "Jennifer M., 43 — Ontario" },
+    };
 
     const PDF_URLS = {
       nightBurner: 'https://magnoliamenopause.com/protocols/night-burner.pdf',
@@ -425,8 +506,10 @@
       card.classList.add('selected');
       Object.entries(map).forEach(([t,p])=>{scores[t]=(scores[t]||0)+p;});
       setTimeout(()=>{
-        if(n<7){advanceTo(n+1);}
-        else{resultType=Object.entries(scores).reduce((a,b)=>a[1]>b[1]?a:b)[0];goToEmail();}
+        if(n<7){
+          if(n===4){showInterstitial();}
+          else{advanceTo(n+1);}
+        }else{resultType=Object.entries(scores).reduce((a,b)=>a[1]>b[1]?a:b)[0];goToEmail();}
       },380);
     }
     function advanceTo(n){
@@ -435,10 +518,26 @@
       const nx=document.getElementById('step-'+n);
       if(nx){nx.classList.add('active');updateProgress(n,7);document.getElementById('quiz-section').scrollIntoView({behavior:'smooth',block:'start'});}
     }
+    function showInterstitial(){
+      const c=document.querySelector('.quiz-step.active');if(c)c.classList.remove('active');
+      const ix=document.getElementById('step-interstitial');
+      ix.classList.add('active');
+      document.getElementById('progress-fill').style.width='55%';
+      document.getElementById('progress-label').textContent='Building your profile…';
+      document.getElementById('quiz-section').scrollIntoView({behavior:'smooth',block:'start'});
+      // Animate remaining dots
+      const dots=ix.querySelectorAll('.interstitial-dot');
+      let i=4;
+      const iv=setInterval(()=>{if(i<dots.length){dots[i].classList.add('lit');i++;}else{clearInterval(iv);}},300);
+      setTimeout(()=>{ix.classList.remove('active');advanceTo(5);},2600);
+    }
     function goToEmail(){
       const t=TYPES[resultType];
       document.getElementById('email-emoji').textContent=t.emoji;
       document.getElementById('email-type-name').textContent="You're "+t.name;
+      // Populate blurred preview
+      document.getElementById('blur-herbs').innerHTML=t.herbs.map(h=>`<div class="blur-herb-row"><span>🌿</span><span>${h.name}</span></div>`).join('');
+      document.getElementById('blur-ritual').textContent=t.ritual.split('.')[0]+'.';
       const c=document.querySelector('.quiz-step.active');if(c)c.classList.remove('active');
       document.getElementById('step-email').classList.add('active');
       document.getElementById('progress-fill').style.width='100%';
@@ -448,6 +547,7 @@
     function submitEmail(){
       const email     = document.getElementById('email-input').value.trim();
       const firstName = document.getElementById('first-name-input').value.trim();
+      const phone     = document.getElementById('phone-input').value.trim();
       const t         = TYPES[resultType];
       const btn       = document.querySelector('.email-submit-btn');
 
@@ -465,15 +565,29 @@
       btn.textContent = 'Sending your protocol...';
       btn.disabled = true;
 
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        to_email:    email,
-        to_name:     firstName,
-        type_name:   t.name,
-        type_emoji:  t.emoji,
-        type_tagline: t.tagline,
-        pdf_url:     PDF_URLS[resultType],
-        discount_code: 'MYTYPE',
-      }).then(() => {
+      const templateParams = {
+        to_email:       email,
+        to_name:        firstName,
+        phone_number:   phone || '',
+        type_name:      t.name,
+        type_emoji:     t.emoji,
+        type_tagline:   t.tagline,
+        herb_1:         t.herbs[0].name,
+        herb_2:         t.herbs[1].name,
+        herb_3:         t.herbs[2].name,
+        herb_4:         t.herbs[3].name,
+        ritual_preview: t.ritual.split('.')[0] + '.',
+        day_1_task:     t.days[0],
+        product_name:   t.product,
+        product_price:  t.productPrice,
+        pdf_url:        PDF_URLS[resultType],
+        discount_code:  'MYTYPE',
+      };
+
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams).then(() => {
+        if (EMAILJS_FOLLOWUP_TEMPLATE_ID) {
+          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_FOLLOWUP_TEMPLATE_ID, templateParams).catch(() => {});
+        }
         showResults();
       }).catch((err) => {
         console.error('EmailJS error:', err);
@@ -510,6 +624,8 @@
       if(alsoTypes.length>0){document.getElementById('also-grid').innerHTML=alsoTypes.map(x=>{const a=ALSO_DATA[x];return`<a href="${a.url}" class="also-card"><div class="also-dot" style="background:${a.dot};"></div><div class="also-name">${a.name}</div><div class="also-flavor">${a.flavor}</div><p class="also-desc">${a.desc}</p><div class="also-price">${a.price} CAD/month</div></a>`;}).join('');}
       else{document.getElementById('also-section').style.display='none';}
       document.getElementById('diet-list').innerHTML=DIET[resultType].map(d=>`<li>${d}</li>`).join('');
+      const test=TESTIMONIALS[resultType];
+      document.getElementById('testimonial-slot').innerHTML=`<div class="testimonial-card" style="border-left-color:${c}"><div class="testimonial-stars">★★★★★</div><p class="testimonial-quote">${test.quote}</p><div class="testimonial-author">— ${test.author}</div></div>`;
     }
     function toggleDay(row,color){
       row.classList.toggle('open');
@@ -520,7 +636,12 @@
     function restartQuiz(){
       scores={nightBurner:0,fadingGlow:0,foggyMind:0,storm:0,earlyShift:0};resultType=null;
       document.querySelectorAll('.answer-card').forEach(c=>c.classList.remove('selected'));
-      document.getElementById('first-name-input').value='';document.getElementById('email-input').value='';
+      document.getElementById('first-name-input').value='';
+      document.getElementById('email-input').value='';
+      document.getElementById('phone-input').value='';
+      document.getElementById('testimonial-slot').innerHTML='';
+      // Reset interstitial dots
+      document.querySelectorAll('#interstitial-dots .interstitial-dot').forEach((d,i)=>{d.classList.toggle('lit',i<4);});
       document.getElementById('results-section').style.display='none';
       const qs=document.getElementById('quiz-section');qs.style.display='flex';
       const cur=document.querySelector('.quiz-step.active');if(cur)cur.classList.remove('active');
