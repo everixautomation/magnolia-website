@@ -601,7 +601,7 @@
       document.getElementById('quiz-section').style.display='none';
       buildResults();
       document.getElementById('results-section').style.display='block';
-      window.scrollTo({top:0,behavior:'smooth'});
+      document.getElementById('result-hero').scrollIntoView({behavior:'smooth',block:'start'});
     }
     function buildResults(){
       const t=TYPES[resultType],c=t.color;
