@@ -3,1649 +3,461 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Find Your Formula — Magnolia Menopause Wellness</title>
+  <title>What's Your Menopause Type? — Magnolia Menopause Wellness</title>
+  <meta name="description" content="Answer 7 questions and get your personalized menopause protocol — free. Ancient herbs matched to your body." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
-    :root {
-      --cream: #F5EDE4;
-      --warmWhite: #FAF7F2;
-      --sand: #E8DDD0;
-      --terracotta: #C4956A;
-      --plum: #7B4F6A;
-      --deepPlum: #5A3650;
-      --darkBrown: #2A2118;
-      --sage: #8B9E7E;
-      --warmGray: #9E958A;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--warmWhite);
-      color: var(--darkBrown);
-      overflow-x: hidden;
-    }
-
-    /* ── ANNOUNCEMENT BAR ── */
-    .announcement-bar {
-      background: var(--deepPlum);
-      color: var(--cream);
-      text-align: center;
-      padding: 10px 20px;
-      font-size: 11px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      font-weight: 500;
-      position: relative;
-      z-index: 1001;
-    }
-
+    :root { --cream: #F5EDE4; --warmWhite: #FAF7F2; --sand: #E8DDD0; --terracotta: #C4956A; --plum: #7B4F6A; --deepPlum: #5A3650; --darkBrown: #2A2118; --sage: #8B9E7E; --warmGray: #9E958A; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--warmWhite); color: var(--darkBrown); overflow-x: hidden; }
+    ::selection { background: rgba(196,149,106,0.3); }
+    .announcement-bar { background: var(--deepPlum); color: var(--cream); text-align: center; padding: 10px 20px; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; }
     .announcement-bar span { opacity: 0.4; margin: 0 12px; }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 36px;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 20px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.4s ease;
-    }
-
-    nav.scrolled {
-      top: 0;
-      padding: 14px 48px;
-      background: rgba(245, 237, 228, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--sand);
-    }
-
-    .nav-logo img {
-      height: 34px;
-      filter: brightness(0) invert(1);
-      transition: filter 0.4s;
-    }
-
+    nav { position: fixed; top: 36px; left: 0; right: 0; z-index: 1000; padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; transition: all 0.4s ease; }
+    nav.scrolled { top: 0; padding: 14px 48px; background: rgba(245,237,228,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--sand); }
+    .nav-logo img { height: 34px; filter: brightness(0) invert(1); transition: filter 0.4s; }
     nav.scrolled .nav-logo img { filter: none; }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(245,237,228,0.8);
-      text-decoration: none;
-      transition: all 0.3s;
-      font-weight: 500;
-    }
-
-    nav.scrolled .nav-links a { color: var(--darkBrown); opacity: 0.7; }
-    .nav-links a:hover { opacity: 1 !important; color: var(--terracotta) !important; }
-
-    .nav-back {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(245,237,228,0.6);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s;
-      font-weight: 500;
-    }
-
-    nav.scrolled .nav-back { color: var(--warmGray); }
-    .nav-back:hover { color: var(--terracotta) !important; }
-
-    /* ── HERO / LANDING SECTION ── */
-    #quiz-hero {
-      min-height: 100vh;
-      background: linear-gradient(160deg, var(--deepPlum) 0%, var(--plum) 50%, #8B5E7A 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 160px 32px 100px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-grain {
-      position: absolute;
-      inset: 0;
-      opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      pointer-events: none;
-    }
-
-    .hero-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.05);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
-    .quiz-hero-logo {
-      margin-bottom: 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .quiz-hero-logo img {
-      height: 56px;
-      filter: brightness(0) invert(1);
-      opacity: 0.9;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(196,149,106,0.15);
-      border: 1px solid rgba(196,149,106,0.3);
-      padding: 8px 20px;
-      border-radius: 100px;
-      font-size: 11px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      font-weight: 600;
-      margin-bottom: 32px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--terracotta);
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-
-    .quiz-hero-h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(40px, 6vw, 74px);
-      font-weight: 400;
-      color: var(--cream);
-      line-height: 1.1;
-      max-width: 780px;
-      margin: 0 0 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .quiz-hero-h1 em {
-      font-style: italic;
-      color: rgba(245,237,228,0.65);
-    }
-
-    .quiz-hero-sub {
-      font-size: 17px;
-      color: rgba(245,237,228,0.65);
-      max-width: 480px;
-      line-height: 1.75;
-      margin-bottom: 52px;
-      position: relative;
-      z-index: 1;
-      font-weight: 300;
-    }
-
-    .quiz-start-btn {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      padding: 18px 56px;
-      background: var(--cream);
-      color: var(--deepPlum);
-      border: none;
-      cursor: pointer;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      position: relative;
-      z-index: 1;
-    }
-
-    .quiz-start-btn:hover { background: #fff; transform: translateY(-2px); }
-
-    .quiz-meta {
-      margin-top: 20px;
-      font-size: 12px;
-      color: rgba(245,237,228,0.35);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      opacity: 0.35;
-      cursor: pointer;
-    }
-
-    .scroll-indicator span {
-      font-size: 9px;
-      letter-spacing: 3px;
-      color: var(--cream);
-      text-transform: uppercase;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 36px;
-      background: linear-gradient(to bottom, var(--cream), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
-
-    /* ── WHY TAKE QUIZ (trust section) ── */
-    #why-quiz {
-      background: var(--cream);
-      padding: 80px 48px;
-      text-align: center;
-    }
-
-    .why-quiz-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
-      max-width: 900px;
-      margin: 48px auto 0;
-    }
-
-    .why-item {}
-
-    .why-icon {
-      font-size: 28px;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .why-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 17px;
-      color: var(--darkBrown);
-      margin-bottom: 8px;
-    }
-
-    .why-desc {
-      font-size: 13px;
-      color: var(--warmGray);
-      line-height: 1.7;
-      font-weight: 300;
-    }
-
-    /* ── QUIZ CONTAINER ── */
-    #quiz-section {
-      background: linear-gradient(170deg, var(--deepPlum) 0%, var(--plum) 60%, #7A5070 100%);
-      min-height: 100vh;
-      padding: 80px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      position: relative;
-      overflow: hidden;
-    }
-
-    #quiz-section::before {
-      content: '';
-      position: absolute;
-      width: 700px;
-      height: 700px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.04);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
-    .quiz-wrapper {
-      width: 100%;
-      max-width: 680px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Progress Bar */
-    .quiz-progress {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 52px;
-    }
-
-    .quiz-progress-label {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(245,237,228,0.4);
-      white-space: nowrap;
-    }
-
-    .quiz-progress-bar {
-      flex: 1;
-      height: 2px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .quiz-progress-fill {
-      height: 100%;
-      background: var(--terracotta);
-      border-radius: 2px;
-      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Quiz Step */
-    .quiz-step {
-      display: none;
-      animation: fadeSlideIn 0.4s ease forwards;
-    }
-
+    .nav-trust { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(245,237,228,0.5); font-weight: 500; }
+    nav.scrolled .nav-trust { color: var(--warmGray); }
+    #quiz-hero { min-height: 100vh; background: linear-gradient(165deg, var(--deepPlum) 0%, var(--plum) 45%, #8B5E7A 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 160px 32px 100px; position: relative; overflow: hidden; }
+    .hero-grain { position: absolute; inset: 0; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); pointer-events: none; }
+    .hero-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(255,255,255,0.05); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+    .hero-logo { margin-bottom: 40px; position: relative; z-index: 1; }
+    .hero-logo img { height: 56px; filter: brightness(0) invert(1); opacity: 0.9; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(196,149,106,0.15); border: 1px solid rgba(196,149,106,0.3); padding: 8px 20px; border-radius: 100px; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--terracotta); font-weight: 600; margin-bottom: 32px; position: relative; z-index: 1; }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--terracotta); animation: pulseDot 2s ease-in-out infinite; }
+    @keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .hero-h1 { font-family: 'Playfair Display',Georgia,serif; font-size: clamp(38px,6vw,72px); font-weight: 400; color: var(--cream); line-height: 1.1; max-width: 820px; margin: 0 0 24px; position: relative; z-index: 1; }
+    .hero-h1 em { font-style: italic; color: rgba(245,237,228,0.6); }
+    .hero-sub { font-size: 17px; color: rgba(245,237,228,0.65); max-width: 500px; line-height: 1.75; margin-bottom: 16px; position: relative; z-index: 1; font-weight: 300; }
+    .hero-free { font-size: 13px; color: rgba(245,237,228,0.4); margin-bottom: 44px; position: relative; z-index: 1; letter-spacing: 1px; }
+    .hero-cta-btn { font-family: 'DM Sans',sans-serif; font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; padding: 20px 60px; background: var(--cream); color: var(--deepPlum); border: none; cursor: pointer; font-weight: 700; transition: all 0.3s ease; position: relative; z-index: 1; }
+    .hero-cta-btn:hover { background: #fff; transform: translateY(-2px); }
+    .hero-meta { margin-top: 20px; font-size: 11px; color: rgba(245,237,228,0.3); letter-spacing: 1.5px; text-transform: uppercase; position: relative; z-index: 1; }
+    .scroll-indicator { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.3; cursor: pointer; }
+    .scroll-indicator span { font-size: 9px; letter-spacing: 3px; color: var(--cream); text-transform: uppercase; }
+    .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom,var(--cream),transparent); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+    #trust-strip { background: var(--cream); padding: 64px 48px; text-align: center; }
+    .trust-eyebrow { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--terracotta); font-weight: 600; margin-bottom: 12px; }
+    .trust-h2 { font-family: 'Playfair Display',serif; font-size: clamp(26px,3.5vw,40px); color: var(--darkBrown); font-weight: 400; line-height: 1.2; margin-bottom: 48px; }
+    .trust-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 48px; max-width: 860px; margin: 0 auto; }
+    .trust-item-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+    .trust-item-title { font-family: 'Playfair Display',serif; font-size: 17px; color: var(--darkBrown); margin-bottom: 8px; }
+    .trust-item-desc { font-size: 13px; color: var(--warmGray); line-height: 1.7; font-weight: 300; }
+    #quiz-section { background: linear-gradient(170deg,var(--deepPlum) 0%,var(--plum) 60%,#7A5070 100%); min-height: 100vh; padding: 80px 24px 100px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; position: relative; overflow: hidden; }
+    #quiz-section::before { content:''; position:absolute; width:700px; height:700px; border-radius:50%; border:1px solid rgba(255,255,255,0.04); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+    .quiz-wrapper { width: 100%; max-width: 660px; position: relative; z-index: 1; }
+    .quiz-progress { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; }
+    .quiz-progress-bar { flex: 1; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+    .quiz-progress-fill { height: 100%; background: var(--terracotta); border-radius: 2px; transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
+    .quiz-progress-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,237,228,0.4); white-space: nowrap; }
+    .quiz-step { display: none; animation: fadeSlideIn 0.4s ease forwards; }
     .quiz-step.active { display: block; }
-
-    @keyframes fadeSlideIn {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeSlideOut {
-      from { opacity: 1; transform: translateY(0); }
-      to { opacity: 0; transform: translateY(-16px); }
-    }
-
-    .quiz-step-num {
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-
-    .quiz-step-q {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(26px, 4vw, 40px);
-      color: var(--cream);
-      line-height: 1.2;
-      margin-bottom: 10px;
-      font-weight: 400;
-    }
-
-    .quiz-step-hint {
-      font-size: 13px;
-      color: rgba(245,237,228,0.45);
-      margin-bottom: 36px;
-      letter-spacing: 0.5px;
-    }
-
-    /* Answer Cards */
-    .answer-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 32px;
-    }
-
-    .answer-grid.cols-1 { grid-template-columns: 1fr; }
-    .answer-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-
-    .answer-card {
-      border: 1.5px solid rgba(255,255,255,0.12);
-      padding: 20px 22px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      background: rgba(255,255,255,0.04);
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      backdrop-filter: blur(4px);
-      position: relative;
-    }
-
-    .answer-card:hover {
-      border-color: rgba(196,149,106,0.5);
-      background: rgba(196,149,106,0.08);
-      transform: translateY(-1px);
-    }
-
-    .answer-card.selected {
-      border-color: var(--terracotta);
-      background: rgba(196,149,106,0.14);
-    }
-
-    .answer-card.selected .answer-check {
-      background: var(--terracotta);
-      border-color: var(--terracotta);
-    }
-
-    .answer-card.selected .answer-check::after {
-      content: '';
-      display: block;
-      width: 6px;
-      height: 10px;
-      border: 2px solid #fff;
-      border-top: none;
-      border-left: none;
-      transform: rotate(45deg) translate(-1px, -1px);
-    }
-
-    .answer-check {
-      width: 20px;
-      height: 20px;
-      border: 1.5px solid rgba(255,255,255,0.25);
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-top: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-    }
-
-    /* Square checkboxes for multi-select */
-    .answer-card.multi .answer-check {
-      border-radius: 3px;
-    }
-
-    .answer-card-content { flex: 1; }
-
-    .answer-label {
-      font-size: 15px;
-      color: var(--cream);
-      font-weight: 500;
-      line-height: 1.3;
-      margin-bottom: 4px;
-    }
-
-    .answer-sub {
-      font-size: 12px;
-      color: rgba(245,237,228,0.45);
-      line-height: 1.5;
-      font-weight: 300;
-    }
-
-    /* Symptom grid (multi-select) */
-    .symptom-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-
-    .symptom-chip {
-      border: 1.5px solid rgba(255,255,255,0.12);
-      padding: 16px 14px;
-      cursor: pointer;
-      transition: all 0.25s;
-      background: rgba(255,255,255,0.04);
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .symptom-chip:hover {
-      border-color: rgba(196,149,106,0.5);
-      background: rgba(196,149,106,0.08);
-    }
-
-    .symptom-chip.selected {
-      border-color: var(--terracotta);
-      background: rgba(196,149,106,0.14);
-    }
-
-    .symptom-icon { font-size: 22px; }
-
-    .symptom-label {
-      font-size: 12px;
-      color: var(--cream);
-      font-weight: 500;
-      line-height: 1.3;
-      letter-spacing: 0.3px;
-    }
-
-    /* Nav Buttons */
-    .quiz-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 8px;
-    }
-
-    .quiz-btn-back {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      background: none;
-      border: none;
-      color: rgba(245,237,228,0.35);
-      cursor: pointer;
-      padding: 12px 0;
-      transition: color 0.2s;
-      font-weight: 500;
-    }
-
-    .quiz-btn-back:hover { color: rgba(245,237,228,0.7); }
-
-    .quiz-btn-next {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      padding: 16px 44px;
-      background: var(--cream);
-      color: var(--deepPlum);
-      border: none;
-      cursor: pointer;
-      font-weight: 700;
-      transition: all 0.3s;
-    }
-
-    .quiz-btn-next:hover { background: #fff; transform: translateY(-1px); }
-    .quiz-btn-next:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
-
-    /* ── EMAIL STEP ── */
-    .email-step-icon {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: rgba(196,149,106,0.12);
-      border: 1px solid rgba(196,149,106,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 28px;
-      font-size: 28px;
-    }
-
-    .email-input-wrap {
-      position: relative;
-      margin-bottom: 16px;
-    }
-
-    .email-input {
-      width: 100%;
-      padding: 18px 20px;
-      background: rgba(255,255,255,0.06);
-      border: 1.5px solid rgba(255,255,255,0.15);
-      color: var(--cream);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    .email-input::placeholder { color: rgba(245,237,228,0.3); }
-    .email-input:focus { border-color: var(--terracotta); }
-
-    .email-disclaimer {
-      font-size: 11px;
-      color: rgba(245,237,228,0.25);
-      text-align: center;
-      line-height: 1.6;
-      margin-top: 12px;
-      letter-spacing: 0.5px;
-    }
-
-    .skip-link {
-      display: block;
-      text-align: center;
-      margin-top: 16px;
-      font-size: 11px;
-      color: rgba(245,237,228,0.3);
-      cursor: pointer;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-decoration: underline;
-      transition: color 0.2s;
-    }
-
-    .skip-link:hover { color: rgba(245,237,228,0.6); }
-
-    /* ── RESULTS PAGE ── */
-    #results-section {
-      display: none;
-      background: var(--warmWhite);
-      padding: 100px 24px;
-    }
-
-    .results-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .results-eyebrow {
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      margin-bottom: 16px;
-      font-weight: 600;
-    }
-
-    .results-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(32px, 4vw, 52px);
-      color: var(--darkBrown);
-      line-height: 1.15;
-      margin-bottom: 16px;
-      font-weight: 400;
-    }
-
-    .results-sub {
-      font-size: 16px;
-      color: var(--warmGray);
-      line-height: 1.75;
-      max-width: 540px;
-      margin: 0 auto 60px;
-      font-weight: 300;
-    }
-
-    /* Primary recommendation */
-    .result-primary {
-      background: linear-gradient(135deg, var(--deepPlum), var(--plum));
-      padding: 52px;
-      margin-bottom: 32px;
-      text-align: left;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .result-primary::before {
-      content: '';
-      position: absolute;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.05);
-      right: -100px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .result-primary-badge {
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      background: var(--terracotta);
-      color: var(--cream);
-      padding: 6px 16px;
-      display: inline-block;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    .result-primary-name {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 38px;
-      color: var(--cream);
-      margin-bottom: 8px;
-      font-weight: 400;
-    }
-
-    .result-primary-flavor {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      margin-bottom: 20px;
-      font-weight: 500;
-    }
-
-    .result-primary-desc {
-      font-size: 15px;
-      color: rgba(245,237,228,0.7);
-      line-height: 1.75;
-      max-width: 420px;
-      margin-bottom: 32px;
-      font-weight: 300;
-    }
-
-    .result-why {
-      margin-bottom: 32px;
-    }
-
-    .result-why-title {
-      font-size: 11px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      margin-bottom: 14px;
-      font-weight: 600;
-    }
-
-    .result-why-list {
-      list-style: none;
-    }
-
-    .result-why-list li {
-      font-size: 14px;
-      color: rgba(245,237,228,0.75);
-      padding: 7px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 300;
-    }
-
-    .result-why-list li::before {
-      content: '';
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--terracotta);
-      flex-shrink: 0;
-    }
-
-    .result-price-block { text-align: right; position: relative; z-index: 1; }
-
-    .result-price {
-      font-family: 'Playfair Display', serif;
-      font-size: 52px;
-      color: var(--cream);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .result-price-sub {
-      font-size: 11px;
-      color: rgba(245,237,228,0.4);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-    }
-
-    .result-add-btn {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 15px 32px;
-      background: var(--cream);
-      color: var(--deepPlum);
-      border: none;
-      cursor: pointer;
-      font-weight: 700;
-      transition: all 0.3s;
-      white-space: nowrap;
-    }
-
-    .result-add-btn:hover { background: #fff; transform: translateY(-1px); }
-
-    /* Also consider */
-    .also-consider {
-      margin-top: 48px;
-      text-align: left;
-    }
-
-    .also-title {
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--warmGray);
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    .also-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .also-card {
-      background: var(--cream);
-      border: 1px solid var(--sand);
-      padding: 24px 20px;
-      text-align: left;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .also-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(42,33,24,0.08);
-    }
-
-    .also-dot {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      margin-bottom: 16px;
-    }
-
-    .also-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 16px;
-      color: var(--darkBrown);
-      margin-bottom: 4px;
-    }
-
-    .also-flavor {
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--warmGray);
-      margin-bottom: 12px;
-    }
-
-    .also-desc {
-      font-size: 12px;
-      color: var(--warmGray);
-      line-height: 1.6;
-      font-weight: 300;
-    }
-
-    /* Bundle upsell */
-    .bundle-upsell {
-      background: var(--darkBrown);
-      padding: 48px;
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-    }
-
-    .bundle-upsell-text {}
-
-    .bundle-upsell-label {
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-
-    .bundle-upsell-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      color: var(--cream);
-      margin-bottom: 8px;
-    }
-
-    .bundle-upsell-desc {
-      font-size: 13px;
-      color: rgba(245,237,228,0.5);
-      line-height: 1.6;
-      font-weight: 300;
-      max-width: 380px;
-    }
-
-    .bundle-upsell-right { text-align: right; flex-shrink: 0; }
-
-    .bundle-upsell-price {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      color: var(--cream);
-      margin-bottom: 4px;
-    }
-
-    .bundle-upsell-save {
-      font-size: 11px;
-      color: var(--terracotta);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .bundle-upsell-btn {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 14px 28px;
-      background: var(--terracotta);
-      color: var(--cream);
-      border: none;
-      cursor: pointer;
-      font-weight: 700;
-      transition: all 0.3s;
-    }
-
-    .bundle-upsell-btn:hover { background: #D4A57A; transform: translateY(-1px); }
-
-    /* ── FOOTER MINI ── */
-    .footer-mini {
-      background: var(--darkBrown);
-      padding: 40px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-mini img {
-      height: 28px;
-      filter: brightness(0) invert(1) opacity(0.5);
-    }
-
-    .footer-mini-links {
-      display: flex;
-      gap: 28px;
-    }
-
-    .footer-mini-links a {
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(245,237,228,0.3);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    @keyframes fadeSlideIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .quiz-step-num { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px; font-weight: 600; }
+    .quiz-step-q { font-family: 'Playfair Display',Georgia,serif; font-size: clamp(24px,4vw,38px); color: var(--cream); line-height: 1.2; margin-bottom: 10px; font-weight: 400; }
+    .quiz-step-hint { font-size: 13px; color: rgba(245,237,228,0.45); margin-bottom: 36px; }
+    .answer-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .answer-card { border: 1.5px solid rgba(255,255,255,0.12); padding: 20px 24px; cursor: pointer; transition: all 0.25s ease; background: rgba(255,255,255,0.04); display: flex; align-items: flex-start; gap: 14px; backdrop-filter: blur(4px); }
+    .answer-card:hover { border-color: rgba(196,149,106,0.5); background: rgba(196,149,106,0.08); transform: translateY(-1px); }
+    .answer-card.selected { border-color: var(--terracotta); background: rgba(196,149,106,0.14); pointer-events: none; }
+    .answer-check { width: 20px; height: 20px; border: 1.5px solid rgba(255,255,255,0.25); border-radius: 50%; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .answer-card.selected .answer-check { background: var(--terracotta); border-color: var(--terracotta); }
+    .answer-card.selected .answer-check::after { content:''; display:block; width:6px; height:10px; border:2px solid #fff; border-top:none; border-left:none; transform:rotate(45deg) translate(-1px,-1px); }
+    .answer-text { font-size: 15px; color: var(--cream); font-weight: 400; line-height: 1.4; }
+    #step-email { text-align: center; }
+    .email-icon { font-size: 56px; margin-bottom: 20px; display: block; }
+    .email-name-input,.email-input { width:100%; padding:18px 20px; background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.15); color:var(--cream); font-family:'DM Sans',sans-serif; font-size:15px; outline:none; transition:border-color 0.3s; margin-bottom:12px; }
+    .email-name-input::placeholder,.email-input::placeholder { color:rgba(245,237,228,0.3); }
+    .email-name-input:focus,.email-input:focus { border-color:var(--terracotta); }
+    .email-submit-btn { width:100%; font-family:'DM Sans',sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; padding:20px; background:var(--cream); color:var(--deepPlum); border:none; cursor:pointer; font-weight:700; transition:all 0.3s; margin-top:4px; }
+    .email-submit-btn:hover { background:#fff; transform:translateY(-1px); }
+    .email-disclaimer { font-size:11px; color:rgba(245,237,228,0.25); margin-top:14px; line-height:1.6; }
+    .skip-link { display:block; margin-top:16px; font-size:11px; color:rgba(245,237,228,0.3); cursor:pointer; letter-spacing:1.5px; text-transform:uppercase; text-decoration:underline; transition:color 0.2s; }
+    .skip-link:hover { color:rgba(245,237,228,0.6); }
+    #results-section { display: none; }
+    .result-hero { padding: 100px 24px 72px; text-align: center; }
+    .result-hero-emoji { font-size: 64px; display: block; margin-bottom: 20px; }
+    .result-hero-eyebrow { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 14px; font-weight: 600; }
+    .result-hero-name { font-family: 'Playfair Display',Georgia,serif; font-size: clamp(32px,5vw,52px); font-weight: 400; color: var(--cream); margin-bottom: 14px; }
+    .result-hero-tagline { font-size: 18px; color: rgba(245,237,228,0.75); font-style: italic; font-family: 'Playfair Display',serif; max-width: 520px; margin: 0 auto; }
+    .result-body { max-width: 720px; margin: 0 auto; padding: 60px 24px 80px; }
+    .result-section-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 8px; font-weight: 600; }
+    .result-section-h2 { font-family: 'Playfair Display',Georgia,serif; font-size: 26px; font-weight: 400; color: var(--darkBrown); margin-bottom: 20px; line-height: 1.2; }
+    .result-description { font-size: 15px; color: var(--warmGray); line-height: 1.85; margin-bottom: 60px; }
+    .herb-card { padding: 26px 28px; margin-bottom: 12px; }
+    .herb-card:nth-child(odd) { background: var(--warmWhite); }
+    .herb-card:nth-child(even) { background: #fff; }
+    .herb-name { font-family: 'Playfair Display',serif; font-size: 18px; font-weight: 400; color: var(--darkBrown); margin-bottom: 4px; }
+    .herb-origin { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; }
+    .herb-desc { font-size: 14px; color: var(--warmGray); line-height: 1.75; font-weight: 300; }
+    .ritual-box { background: var(--darkBrown); padding: 36px; margin-top: 52px; margin-bottom: 52px; }
+    .ritual-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 10px; font-weight: 600; }
+    .ritual-text { font-family: 'Playfair Display',Georgia,serif; font-size: 19px; color: var(--cream); line-height: 1.7; }
+    .plan-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 8px; font-weight: 600; }
+    .plan-h2 { font-family: 'Playfair Display',Georgia,serif; font-size: 26px; font-weight: 400; color: var(--darkBrown); margin-bottom: 24px; }
+    .day-row { border-bottom: 1px solid var(--sand); cursor: pointer; }
+    .day-row-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
+    .day-row-left { display: flex; align-items: center; gap: 16px; }
+    .day-num { width: 32px; height: 32px; border-radius: 50%; background: var(--sand); color: var(--darkBrown); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; transition: all 0.2s; flex-shrink: 0; }
+    .day-label { font-size: 14px; font-weight: 500; color: var(--darkBrown); }
+    .day-plus { color: var(--warmGray); font-size: 18px; transition: transform 0.2s; font-weight: 300; }
+    .day-row.open .day-plus { transform: rotate(45deg); }
+    .day-content { display: none; font-size: 14px; color: var(--warmGray); line-height: 1.75; padding: 0 0 16px 48px; font-weight: 300; }
+    .day-row.open .day-content { display: block; }
+    .cta-section { margin-top: 60px; padding: 48px 40px; text-align: center; border: 1px solid rgba(0,0,0,0.08); }
+    .cta-badge { display: inline-block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--cream); padding: 5px 16px; margin-bottom: 20px; font-weight: 600; }
+    .cta-product-name { font-family: 'Playfair Display',Georgia,serif; font-size: 34px; font-weight: 400; color: var(--darkBrown); margin-bottom: 6px; }
+    .cta-product-flavor { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--warmGray); margin-bottom: 16px; font-weight: 500; }
+    .cta-product-desc { font-size: 15px; color: var(--warmGray); line-height: 1.75; max-width: 520px; margin: 0 auto 28px; font-weight: 300; }
+    .cta-price-row { display: flex; align-items: baseline; justify-content: center; gap: 10px; margin-bottom: 24px; }
+    .cta-price { font-family: 'Playfair Display',serif; font-size: 48px; color: var(--darkBrown); line-height: 1; }
+    .cta-price-sub { font-size: 13px; color: var(--warmGray); letter-spacing: 1px; }
+    .cta-main-btn { font-family: 'DM Sans',sans-serif; font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; padding: 20px 64px; background: var(--darkBrown); color: var(--cream); border: none; cursor: pointer; font-weight: 700; transition: all 0.3s; display: inline-block; text-decoration: none; margin-bottom: 14px; }
+    .cta-main-btn:hover { background: var(--deepPlum); transform: translateY(-2px); }
+    .cta-code { font-size: 13px; color: var(--warmGray); }
+    .cta-code strong { color: var(--darkBrown); letter-spacing: 1px; }
+    .cta-shipping { font-size: 11px; color: var(--warmGray); margin-top: 8px; }
+    .bundle-section { background: var(--darkBrown); padding: 52px 48px; margin-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .bundle-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 14px; font-weight: 600; }
+    .bundle-title { font-family: 'Playfair Display',serif; font-size: 26px; color: var(--cream); margin-bottom: 10px; font-weight: 400; }
+    .bundle-desc { font-size: 14px; color: rgba(245,237,228,0.5); line-height: 1.7; font-weight: 300; max-width: 380px; }
+    .bundle-list { list-style: none; margin-top: 16px; }
+    .bundle-list li { font-size: 13px; color: rgba(245,237,228,0.6); padding: 5px 0; display: flex; align-items: center; gap: 8px; font-weight: 300; }
+    .bundle-list li::before { content: '·'; color: var(--terracotta); font-size: 16px; }
+    .bundle-right { text-align: right; flex-shrink: 0; }
+    .bundle-price { font-family: 'Playfair Display',serif; font-size: 42px; color: var(--cream); margin-bottom: 4px; }
+    .bundle-save { font-size: 11px; color: var(--terracotta); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px; }
+    .bundle-btn { font-family: 'DM Sans',sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 15px 32px; background: var(--terracotta); color: var(--cream); border: none; cursor: pointer; font-weight: 700; transition: all 0.3s; display: inline-block; text-decoration: none; white-space: nowrap; }
+    .bundle-btn:hover { background: #D4A57A; transform: translateY(-1px); }
+    .also-section { margin-top: 52px; }
+    .also-title { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--warmGray); margin-bottom: 20px; font-weight: 600; }
+    .also-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .also-card { background: var(--cream); border: 1px solid var(--sand); padding: 24px 20px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: block; }
+    .also-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(42,33,24,0.08); }
+    .also-dot { width: 28px; height: 28px; border-radius: 50%; margin-bottom: 14px; }
+    .also-name { font-family: 'Playfair Display',serif; font-size: 16px; color: var(--darkBrown); margin-bottom: 3px; }
+    .also-flavor { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--warmGray); margin-bottom: 10px; }
+    .also-desc { font-size: 12px; color: var(--warmGray); line-height: 1.6; font-weight: 300; }
+    .also-price { font-size: 14px; color: var(--darkBrown); font-weight: 600; margin-top: 12px; }
+    .retake-section { text-align: center; margin-top: 64px; padding-bottom: 80px; }
+    .retake-btn { font-family: 'DM Sans',sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 12px 28px; background: none; border: 1.5px solid var(--sand); color: var(--warmGray); cursor: pointer; transition: all 0.3s; }
+    .retake-btn:hover { border-color: var(--darkBrown); color: var(--darkBrown); }
+    .footer-mini { background: var(--darkBrown); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-mini img { height: 28px; filter: brightness(0) invert(1) opacity(0.5); }
+    .footer-mini-links { display: flex; gap: 28px; }
+    .footer-mini-links a { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(245,237,228,0.3); text-decoration: none; transition: color 0.2s; }
     .footer-mini-links a:hover { color: rgba(245,237,228,0.7); }
-
-    .footer-mini-copy {
-      font-size: 11px;
-      color: rgba(245,237,228,0.2);
-      letter-spacing: 0.5px;
-    }
-
-    /* ── RESPONSIVE ── */
+    .footer-mini-copy { font-size: 11px; color: rgba(245,237,228,0.2); letter-spacing: 0.5px; }
     @media (max-width: 768px) {
-      nav { padding: 16px 24px; }
-      nav.scrolled { padding: 12px 24px; }
-      .nav-links { display: none; }
-      #quiz-hero, #quiz-section { padding-left: 20px; padding-right: 20px; }
-      #quiz-hero { padding-top: 130px; padding-bottom: 80px; }
-      .symptom-grid { grid-template-columns: repeat(3, 1fr); }
-      .answer-grid { grid-template-columns: 1fr; }
-      .result-primary { grid-template-columns: 1fr; padding: 36px 28px; }
-      .result-price-block { text-align: left; }
+      nav { padding: 16px 24px; } nav.scrolled { padding: 12px 24px; }
+      #quiz-hero { padding: 130px 24px 80px; }
+      #trust-strip { padding: 56px 24px; } .trust-grid { grid-template-columns: 1fr; gap: 36px; }
+      #quiz-section { padding: 60px 20px 80px; }
+      .bundle-section { flex-direction: column; padding: 36px 24px; text-align: center; } .bundle-right { text-align: center; } .bundle-desc { max-width: 100%; }
       .also-grid { grid-template-columns: 1fr; }
-      .bundle-upsell { flex-direction: column; text-align: center; padding: 36px 24px; }
-      .bundle-upsell-right { text-align: center; }
-      .bundle-upsell-desc { max-width: 100%; }
-      .why-quiz-grid { grid-template-columns: 1fr; }
-      .footer-mini { flex-direction: column; gap: 20px; text-align: center; }
-      .footer-mini-links { flex-wrap: wrap; justify-content: center; }
-      #results-section { padding: 72px 20px; }
+      .result-body { padding: 48px 20px 60px; } .cta-section { padding: 36px 24px; }
+      .footer-mini { flex-direction: column; gap: 20px; text-align: center; padding: 32px 24px; } .footer-mini-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
     }
-
-    @media (max-width: 480px) {
-      .symptom-grid { grid-template-columns: repeat(2, 1fr); }
-      .quiz-step-q { font-size: 24px; }
-    }
+    @media (max-width: 480px) { .hero-h1 { font-size: 36px; } .quiz-step-q { font-size: 24px; } .cta-price { font-size: 40px; } }
   </style>
 </head>
 <body>
 
-  <!-- ANNOUNCEMENT BAR -->
-  <div class="announcement-bar" id="ann-bar">
-    Free shipping on subscriptions
-    <span>·</span>
-    30-Day Guarantee
-    <span>·</span>
-    Made in Canada
-  </div>
+  <div class="announcement-bar">Free shipping on subscriptions <span>·</span> 30-Day Guarantee <span>·</span> Made in Canada</div>
 
-  <!-- NAV -->
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo" style="text-decoration:none;">
-      <img src="magnolia_no_bg.png" alt="Magnolia Menopause Wellness" />
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html#products">Shop</a></li>
-      <li><a href="index.html#ingredients">Ingredients</a></li>
-      <li><a href="index.html#why">Our Story</a></li>
-    </ul>
-    <a href="index.html" class="nav-back">← Back to site</a>
+    <a href="index.html" class="nav-logo" style="text-decoration:none;"><img src="magnolia_no_bg.png" alt="Magnolia Menopause Wellness" /></a>
+    <span class="nav-trust">Free Quiz · Free Protocol</span>
   </nav>
 
-  <!-- QUIZ HERO / LANDING SECTION -->
   <section id="quiz-hero">
     <div class="hero-grain"></div>
     <div class="hero-ring" style="width:700px;height:700px;"></div>
     <div class="hero-ring" style="width:460px;height:460px;"></div>
+    <div class="hero-logo"><img src="magnolia_no_bg.png" alt="Magnolia Menopause Wellness" /></div>
+    <div class="hero-badge"><div class="hero-badge-dot"></div>90 seconds · Completely free</div>
+    <h1 class="hero-h1">What's Your<br /><em>Menopause Type?</em></h1>
+    <p class="hero-sub">Answer 7 questions and get a personalized protocol with the exact herbs from Ayurveda and Chinese Medicine that match your body's needs.</p>
+    <p class="hero-free">Plus your 7-day starter plan and daily ritual guide — free.</p>
+    <button class="hero-cta-btn" onclick="startQuiz()">Discover My Type</button>
+    <p class="hero-meta">Free. No credit card. Results instantly.</p>
+    <div class="scroll-indicator" onclick="startQuiz()"><span>Start below</span><div class="scroll-line"></div></div>
+  </section>
 
-    <div class="quiz-hero-logo">
-      <img src="magnolia_no_bg.png" alt="Magnolia Menopause Wellness" />
-    </div>
-
-    <div class="hero-badge">
-      <div class="hero-badge-dot"></div>
-      90 seconds · Completely free
-    </div>
-
-    <h1 class="quiz-hero-h1">
-      Your body is unique.<br />
-      <em>Your formula should be too.</em>
-    </h1>
-
-    <p class="quiz-hero-sub">
-      Tell us about your symptoms and we'll match you with the Magnolia blend — or combination — that fits where you are right now.
-    </p>
-
-    <button class="quiz-start-btn" onclick="startQuiz()">Find My Formula</button>
-    <p class="quiz-meta">4 questions · No purchase required</p>
-
-    <div class="scroll-indicator" onclick="startQuiz()">
-      <span>Start below</span>
-      <div class="scroll-line"></div>
+  <section id="trust-strip">
+    <p class="trust-eyebrow">Personalized for You</p>
+    <h2 class="trust-h2">Ancient wisdom.<br />Your exact body. Right now.</h2>
+    <div class="trust-grid">
+      <div><span class="trust-item-icon">🌿</span><div class="trust-item-title">Symptom-matched</div><p class="trust-item-desc">Menopause looks different for every woman. We match your blend to your specific pattern — not a one-size-fits-all formula.</p></div>
+      <div><span class="trust-item-icon">🏺</span><div class="trust-item-title">3,000 years of tradition</div><p class="trust-item-desc">Every herb in your protocol comes from Ayurveda or Traditional Chinese Medicine — time-tested, now backed by modern clinical research.</p></div>
+      <div><span class="trust-item-icon">✦</span><div class="trust-item-title">Honest guidance</div><p class="trust-item-desc">We'll only recommend more than one product if your symptoms genuinely call for it. Your result is personalized — not a sales funnel.</p></div>
     </div>
   </section>
 
-  <!-- WHY TAKE THE QUIZ -->
-  <section id="why-quiz">
-    <p class="section-eyebrow" style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--terracotta);font-weight:600;margin-bottom:12px;">Personalized for You</p>
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,42px);color:var(--darkBrown);font-weight:400;line-height:1.2;">Why the quiz works</h2>
-    <div class="why-quiz-grid">
-      <div class="why-item">
-        <span class="why-icon">🌿</span>
-        <div class="why-title">Symptom-matched</div>
-        <p class="why-desc">Menopause looks different for every woman. We match your blend to your specific symptom cluster — not a generic formula.</p>
-      </div>
-      <div class="why-item">
-        <span class="why-icon">🔬</span>
-        <div class="why-title">Science-informed</div>
-        <p class="why-desc">Each recommendation is grounded in the clinical evidence behind every ingredient — so you know exactly why we suggest what we do.</p>
-      </div>
-      <div class="why-item">
-        <span class="why-icon">✦</span>
-        <div class="why-title">No fluff, no upsell</div>
-        <p class="why-desc">We'll only recommend more than one product if your symptoms genuinely call for it. Honest guidance — always.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUIZ SECTION -->
   <section id="quiz-section">
     <div class="quiz-wrapper">
-
-      <!-- Progress Bar -->
       <div class="quiz-progress">
-        <div class="quiz-progress-bar">
-          <div class="quiz-progress-fill" id="progress-fill" style="width: 0%"></div>
-        </div>
-        <span class="quiz-progress-label" id="progress-label">Question 1 of 4</span>
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progress-fill" style="width:0%"></div></div>
+        <span class="quiz-progress-label" id="progress-label">Question 1 of 7</span>
       </div>
 
-      <!-- STEP 1: Stage -->
       <div class="quiz-step active" id="step-1">
-        <div class="quiz-step-num">Question 1 of 4</div>
-        <h2 class="quiz-step-q">What stage are you in?</h2>
-        <p class="quiz-step-hint">Choose the one that feels most like where you are now.</p>
-
-        <div class="answer-grid cols-1">
-          <div class="answer-card" data-step="1" data-value="peri" onclick="selectSingle(this, 1)">
-            <div class="answer-check"></div>
-            <div class="answer-card-content">
-              <div class="answer-label">Perimenopause</div>
-              <div class="answer-sub">My periods are changing but haven't stopped. I'm noticing symptoms starting.</div>
-            </div>
-          </div>
-          <div class="answer-card" data-step="1" data-value="meno" onclick="selectSingle(this, 1)">
-            <div class="answer-check"></div>
-            <div class="answer-card-content">
-              <div class="answer-label">Menopause</div>
-              <div class="answer-sub">My periods have stopped (or it's been over 12 months). Symptoms are active.</div>
-            </div>
-          </div>
-          <div class="answer-card" data-step="1" data-value="post" onclick="selectSingle(this, 1)">
-            <div class="answer-check"></div>
-            <div class="answer-card-content">
-              <div class="answer-label">Post-menopause</div>
-              <div class="answer-sub">I'm through the transition but still managing some lingering symptoms.</div>
-            </div>
-          </div>
-          <div class="answer-card" data-step="1" data-value="unsure" onclick="selectSingle(this, 1)">
-            <div class="answer-check"></div>
-            <div class="answer-card-content">
-              <div class="answer-label">Not sure</div>
-              <div class="answer-sub">I think something's changing but I'm not certain what stage I'm in.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="quiz-nav">
-          <span></span>
-          <button class="quiz-btn-next" id="next-1" disabled onclick="goToStep(2)">Continue →</button>
+        <div class="quiz-step-num">Question 1 of 7</div>
+        <h2 class="quiz-step-q">What bothers you the most right now?</h2>
+        <p class="quiz-step-hint">Pick the one that affects your daily life the most.</p>
+        <div class="answer-list">
+          <div class="answer-card" onclick="selectAnswer(this,1,{nightBurner:3,storm:1})"><div class="answer-check"></div><span class="answer-text">I can't sleep — night sweats, hot flashes, waking at 3am</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,1,{fadingGlow:3,storm:1})"><div class="answer-check"></div><span class="answer-text">My skin, hair, and body feel like they belong to someone else</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,1,{foggyMind:3,storm:1})"><div class="answer-check"></div><span class="answer-text">Brain fog — I can't think, focus, or remember anything</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,1,{storm:3})"><div class="answer-check"></div><span class="answer-text">Honestly, everything at once</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,1,{earlyShift:3})"><div class="answer-check"></div><span class="answer-text">Something subtle is shifting but I can't quite name it</span></div>
         </div>
       </div>
 
-      <!-- STEP 2: Symptoms (multi-select) -->
       <div class="quiz-step" id="step-2">
-        <div class="quiz-step-num">Question 2 of 4</div>
-        <h2 class="quiz-step-q">Which symptoms bother you most?</h2>
-        <p class="quiz-step-hint">Select all that apply — we use this to personalize your formula.</p>
-
-        <div class="symptom-grid">
-          <div class="symptom-chip multi" data-symptom="hot-flashes" onclick="toggleSymptom(this)">
-            <span class="symptom-icon">🔥</span>
-            <span class="symptom-label">Hot Flashes</span>
-          </div>
-          <div class="symptom-chip multi" data-symptom="night-sweats" onclick="toggleSymptom(this)">
-            <span class="symptom-icon">🌙</span>
-            <span class="symptom-label">Night Sweats</span>
-          </div>
-          <div class="symptom-chip multi" data-symptom="sleep-issues" onclick="toggleSymptom(this)">
-            <span class="symptom-icon">😴</span>
-            <span class="symptom-label">Sleep Issues</span>
-          </div>
-          <div class="symptom-chip multi" data-symptom="mood-swings" onclick="toggleSymptom(this)">
-            <span class="symptom-icon">🌊</span>
-            <span class="symptom-label">Mood Swings</span>
-          </div>
-          <div class="symptom-chip multi" data-symptom="weight-changes" onclick="toggleSymptom(this)">
-            <span class="symptom-icon">⚖️</span>
-            <span class="symptom-label">Weight Changes</span>
-          </div>
-          <div class="symptom-chip multi" data-symptom="joint-pain" onclick="toggleSymptom(this)">
-            <span class="symptom-icon">🦴</span>
-            <span class="symptom-label">Joint Pain</span>
-          </div>
-          <div class="symptom-chip multi" data-symptom="skin-hair" onclick="toggleSymptom(this)">
-            <span class="symptom-icon">✨</span>
-            <span class="symptom-label">Skin & Hair Changes</span>
-          </div>
-          <div class="symptom-chip multi" data-symptom="brain-fog" onclick="toggleSymptom(this)">
-            <span class="symptom-icon">🧠</span>
-            <span class="symptom-label">Brain Fog</span>
-          </div>
-          <div class="symptom-chip multi" data-symptom="low-energy" onclick="toggleSymptom(this)">
-            <span class="symptom-icon">⚡</span>
-            <span class="symptom-label">Low Energy</span>
-          </div>
-        </div>
-
-        <div class="quiz-nav">
-          <button class="quiz-btn-back" onclick="goToStep(1)">← Back</button>
-          <button class="quiz-btn-next" id="next-2" disabled onclick="goToStep(3)">Continue →</button>
+        <div class="quiz-step-num">Question 2 of 7</div>
+        <h2 class="quiz-step-q">How would you describe your sleep over the past month?</h2>
+        <p class="quiz-step-hint">Be honest — no one's judging.</p>
+        <div class="answer-list">
+          <div class="answer-card" onclick="selectAnswer(this,2,{nightBurner:3,storm:1})"><div class="answer-check"></div><span class="answer-text">I wake up drenched or burning hot most nights</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,2,{foggyMind:2,fadingGlow:1})"><div class="answer-check"></div><span class="answer-text">I fall asleep fine but wake up exhausted</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,2,{earlyShift:2,nightBurner:1})"><div class="answer-check"></div><span class="answer-text">Sleep is mostly okay, but I feel anxious at bedtime</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,2,{nightBurner:2,storm:2})"><div class="answer-check"></div><span class="answer-text">I haven't had a full night's sleep in months</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,2,{foggyMind:2,fadingGlow:1})"><div class="answer-check"></div><span class="answer-text">Sleep is fine — it's the daytime that's the problem</span></div>
         </div>
       </div>
 
-      <!-- STEP 3: Priority -->
       <div class="quiz-step" id="step-3">
-        <div class="quiz-step-num">Question 3 of 4</div>
-        <h2 class="quiz-step-q">What's your #1 priority right now?</h2>
-        <p class="quiz-step-hint">If you could change one thing today, what would it be?</p>
-
-        <div class="answer-grid cols-1">
-          <div class="answer-card" data-step="3" data-value="sleep" onclick="selectSingle(this, 3)">
-            <div class="answer-check"></div>
-            <div class="answer-card-content">
-              <div class="answer-label">Better sleep</div>
-              <div class="answer-sub">Fall asleep, stay asleep, and wake up actually feeling rested.</div>
-            </div>
-          </div>
-          <div class="answer-card" data-step="3" data-value="hotflashes" onclick="selectSingle(this, 3)">
-            <div class="answer-check"></div>
-            <div class="answer-card-content">
-              <div class="answer-label">Fewer hot flashes & sweats</div>
-              <div class="answer-sub">Calm the fire. Cool down the temperature swings and night drenches.</div>
-            </div>
-          </div>
-          <div class="answer-card" data-step="3" data-value="energy" onclick="selectSingle(this, 3)">
-            <div class="answer-check"></div>
-            <div class="answer-card-content">
-              <div class="answer-label">More energy & mental clarity</div>
-              <div class="answer-sub">Cut through the fog, feel sharp, and have energy that actually lasts.</div>
-            </div>
-          </div>
-          <div class="answer-card" data-step="3" data-value="myself" onclick="selectSingle(this, 3)">
-            <div class="answer-check"></div>
-            <div class="answer-card-content">
-              <div class="answer-label">Feeling like myself again</div>
-              <div class="answer-sub">My skin, my mood, my body — I want to feel whole again across everything.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="quiz-nav">
-          <button class="quiz-btn-back" onclick="goToStep(2)">← Back</button>
-          <button class="quiz-btn-next" id="next-3" disabled onclick="goToStep(4)">Continue →</button>
+        <div class="quiz-step-num">Question 3 of 7</div>
+        <h2 class="quiz-step-q">When you look in the mirror, what do you notice most?</h2>
+        <p class="quiz-step-hint">This isn't about vanity — it's about what your body is telling you.</p>
+        <div class="answer-list">
+          <div class="answer-card" onclick="selectAnswer(this,3,{fadingGlow:3})"><div class="answer-check"></div><span class="answer-text">My skin is drier and duller than it used to be</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,3,{fadingGlow:3})"><div class="answer-check"></div><span class="answer-text">My hair is thinning and my nails are brittle</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,3,{nightBurner:2,foggyMind:1})"><div class="answer-check"></div><span class="answer-text">I look tired — even when I've slept</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,3,{foggyMind:2,earlyShift:1})"><div class="answer-check"></div><span class="answer-text">I look fine but I don't FEEL like myself</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,3,{storm:3,fadingGlow:1})"><div class="answer-check"></div><span class="answer-text">All of the above, honestly</span></div>
         </div>
       </div>
 
-      <!-- STEP 4: Prior experience -->
       <div class="quiz-step" id="step-4">
-        <div class="quiz-step-num">Question 4 of 4</div>
-        <h2 class="quiz-step-q">Have you tried supplements before?</h2>
-        <p class="quiz-step-hint">This helps us tailor how we explain your recommendation.</p>
-
-        <div class="answer-grid cols-1">
-          <div class="answer-card" data-step="4" data-value="tried-failed" onclick="selectSingle(this, 4)">
-            <div class="answer-check"></div>
-            <div class="answer-card-content">
-              <div class="answer-label">Yes — but they didn't work</div>
-              <div class="answer-sub">I've tried things before but didn't notice much difference.</div>
-            </div>
-          </div>
-          <div class="answer-card" data-step="4" data-value="tried-helped" onclick="selectSingle(this, 4)">
-            <div class="answer-check"></div>
-            <div class="answer-card-content">
-              <div class="answer-label">Yes — and some helped</div>
-              <div class="answer-sub">I've had some success but I'm looking for something more targeted.</div>
-            </div>
-          </div>
-          <div class="answer-card" data-step="4" data-value="first-time" onclick="selectSingle(this, 4)">
-            <div class="answer-check"></div>
-            <div class="answer-card-content">
-              <div class="answer-label">No — this is my first time</div>
-              <div class="answer-sub">I'm new to supplements and want to start in the right place.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="quiz-nav">
-          <button class="quiz-btn-back" onclick="goToStep(3)">← Back</button>
-          <button class="quiz-btn-next" id="next-4" disabled onclick="goToEmail()">See My Results →</button>
+        <div class="quiz-step-num">Question 4 of 7</div>
+        <h2 class="quiz-step-q">How sharp does your mind feel lately?</h2>
+        <p class="quiz-step-hint">Think about the last 2 weeks.</p>
+        <div class="answer-list">
+          <div class="answer-card" onclick="selectAnswer(this,4,{foggyMind:3})"><div class="answer-check"></div><span class="answer-text">I forget words mid-sentence and lose my train of thought constantly</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,4,{foggyMind:2,nightBurner:1})"><div class="answer-check"></div><span class="answer-text">I'm mentally exhausted by 2pm every day</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,4,{foggyMind:2,storm:1})"><div class="answer-check"></div><span class="answer-text">I feel scattered — like I can't hold multiple things in my head anymore</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,4,{fadingGlow:2,nightBurner:1})"><div class="answer-check"></div><span class="answer-text">My mind is okay but my body feels off</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,4,{earlyShift:2})"><div class="answer-check"></div><span class="answer-text">Mostly fine but I've noticed small changes recently</span></div>
         </div>
       </div>
 
-      <!-- STEP 5: Email (optional) -->
-      <div class="quiz-step" id="step-email">
-        <div class="email-step-icon">🌸</div>
-        <div class="quiz-step-num" style="text-align:center;">Almost there</div>
-        <h2 class="quiz-step-q" style="text-align:center;">Where should we send<br />your personalized results?</h2>
-        <p class="quiz-step-hint" style="text-align:center; margin-bottom:32px;">Get your formula recommendation plus expert tips for your symptoms — delivered straight to your inbox.</p>
-
-        <div class="email-input-wrap">
-          <input type="email" class="email-input" id="email-input" placeholder="your@email.com" />
+      <div class="quiz-step" id="step-5">
+        <div class="quiz-step-num">Question 5 of 7</div>
+        <h2 class="quiz-step-q">Where are you in your menopause journey?</h2>
+        <p class="quiz-step-hint">Best guess is fine.</p>
+        <div class="answer-list">
+          <div class="answer-card" onclick="selectAnswer(this,5,{earlyShift:3})"><div class="answer-check"></div><span class="answer-text">Perimenopause — I still have periods but things are changing</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,5,{storm:1,nightBurner:1,foggyMind:1})"><div class="answer-check"></div><span class="answer-text">In the thick of menopause — symptoms are in full force</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,5,{fadingGlow:1,foggyMind:1})"><div class="answer-check"></div><span class="answer-text">Postmenopause — but I still have symptoms</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,5,{earlyShift:1})"><div class="answer-check"></div><span class="answer-text">I honestly don't know</span></div>
         </div>
+      </div>
 
-        <button class="quiz-btn-next" style="width:100%; font-size:13px;" onclick="submitAndShowResults()">Show My Results →</button>
-        <p class="email-disclaimer">We respect your privacy. No spam, ever. Unsubscribe anytime.</p>
+      <div class="quiz-step" id="step-6">
+        <div class="quiz-step-num">Question 6 of 7</div>
+        <h2 class="quiz-step-q">If you could fix ONE thing tomorrow, what would it be?</h2>
+        <p class="quiz-step-hint">Your gut answer is the right one.</p>
+        <div class="answer-list">
+          <div class="answer-card" onclick="selectAnswer(this,6,{nightBurner:3})"><div class="answer-check"></div><span class="answer-text">Sleep through the night without waking up soaked</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,6,{fadingGlow:3})"><div class="answer-check"></div><span class="answer-text">Feel beautiful and comfortable in my own skin again</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,6,{foggyMind:3})"><div class="answer-check"></div><span class="answer-text">Think clearly and have energy that lasts all day</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,6,{storm:2,earlyShift:1})"><div class="answer-check"></div><span class="answer-text">Just feel like myself again — whoever that is now</span></div>
+        </div>
+      </div>
+
+      <div class="quiz-step" id="step-7">
+        <div class="quiz-step-num">Question 7 of 7</div>
+        <h2 class="quiz-step-q">What's your relationship with traditional or natural medicine?</h2>
+        <p class="quiz-step-hint">There's no wrong answer here.</p>
+        <div class="answer-list">
+          <div class="answer-card" onclick="selectAnswer(this,7,{})"><div class="answer-check"></div><span class="answer-text">I'm very open — I already use herbs, adaptogens, or mushrooms</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,7,{})"><div class="answer-check"></div><span class="answer-text">I'm curious but don't know where to start</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,7,{})"><div class="answer-check"></div><span class="answer-text">I'm skeptical but willing to try something different</span></div>
+          <div class="answer-card" onclick="selectAnswer(this,7,{storm:1})"><div class="answer-check"></div><span class="answer-text">I've tried everything and nothing has worked yet</span></div>
+        </div>
+      </div>
+
+      <div class="quiz-step" id="step-email">
+        <span class="email-icon" id="email-emoji">🌸</span>
+        <div class="quiz-step-num" style="text-align:center;margin-bottom:8px;">Your result is ready</div>
+        <h2 class="quiz-step-q" style="text-align:center;color:var(--cream);font-size:clamp(26px,4vw,36px);margin-bottom:14px;" id="email-type-name">You're The Night Burner</h2>
+        <p class="quiz-step-hint" style="text-align:center;margin-bottom:32px;font-size:14px;color:rgba(245,237,228,0.55);">Enter your details to unlock your personalized protocol — your herb guide, daily ritual, and free 7-day starter plan.</p>
+        <input type="text" class="email-name-input" id="first-name-input" placeholder="First name" />
+        <input type="email" class="email-input" id="email-input" placeholder="Your best email address" />
+        <button class="email-submit-btn" onclick="submitEmail()">Get My Free Protocol →</button>
+        <p class="email-disclaimer">We respect your privacy. No spam, ever. Unsubscribe anytime. Your result will also appear on screen immediately.</p>
         <span class="skip-link" onclick="showResults()">Skip — just show me my results</span>
       </div>
-
     </div>
   </section>
 
-  <!-- RESULTS -->
   <section id="results-section">
-    <div class="results-inner">
+    <div class="result-hero" id="result-hero">
+      <span class="result-hero-emoji" id="result-emoji">🌙</span>
+      <p class="result-hero-eyebrow">Your menopause type</p>
+      <h1 class="result-hero-name" id="result-name"></h1>
+      <p class="result-hero-tagline" id="result-tagline"></p>
+    </div>
+    <div class="result-body">
+      <p class="result-section-eyebrow">What's happening in your body</p>
+      <h2 class="result-section-h2" id="result-body-h2"></h2>
+      <p class="result-description" id="result-description"></p>
+      <p class="result-section-eyebrow">Your personalized herb guide</p>
+      <h2 class="result-section-h2">The ancient herbs that match your type</h2>
+      <div id="herb-list"></div>
+      <div class="ritual-box"><div class="ritual-label">Your daily ritual</div><p class="ritual-text" id="ritual-text"></p></div>
+      <p class="plan-label">Your 7-day starter plan</p>
+      <h2 class="plan-h2">One small step each day</h2>
+      <div id="day-plan"></div>
 
-      <div class="results-eyebrow">Your Personalized Formula</div>
-      <h2 class="results-title" id="results-title">Your formula is ready.</h2>
-      <p class="results-sub" id="results-sub">Based on your symptoms and priorities, here's what we recommend.</p>
+      <div class="cta-section" id="cta-section">
+        <div class="cta-badge" id="cta-badge">Recommended for Your Type</div>
+        <h2 class="cta-product-name" id="cta-product-name"></h2>
+        <div class="cta-product-flavor" id="cta-product-flavor"></div>
+        <p class="cta-product-desc" id="cta-product-desc"></p>
+        <div class="cta-price-row"><span class="cta-price" id="cta-price"></span><span class="cta-price-sub">CAD / month</span></div>
+        <a href="index.html#products" class="cta-main-btn" id="cta-main-btn">Start My Ritual — 20% Off First Month</a>
+        <p class="cta-code">Use code <strong>MYTYPE</strong> at checkout</p>
+        <p class="cta-shipping">Free shipping · Cancel anytime · 30-day guarantee</p>
+      </div>
 
-      <!-- Primary Recommendation -->
-      <div class="result-primary" id="result-primary-card">
+      <div class="bundle-section" id="bundle-section">
         <div>
-          <div class="result-primary-badge" id="result-badge">Our Top Pick for You</div>
-          <div class="result-primary-name" id="result-name">Magnolia Rest</div>
-          <div class="result-primary-flavor" id="result-flavor">Lavender Chocolate</div>
-          <p class="result-primary-desc" id="result-desc">A warm lavender hot chocolate that works while you sleep.</p>
-          <div class="result-why">
-            <div class="result-why-title">Why this matches you</div>
-            <ul class="result-why-list" id="result-why-list">
-              <li>Matched to your sleep symptoms</li>
-            </ul>
-          </div>
-          <a href="index.html#products" class="result-add-btn" style="text-decoration:none;display:inline-block;">Add to Cart →</a>
+          <div class="bundle-label">Complete the Ritual</div>
+          <h3 class="bundle-title">The Complete Ritual Kit</h3>
+          <p class="bundle-desc">Sleep deeply. Glow visibly. Think clearly. All three Magnolia blends working together as one intentional daily practice.</p>
+          <ul class="bundle-list">
+            <li>Magnolia Rest — Lavender Chocolate (evening)</li>
+            <li>Magnolia Glow — Rose Water (morning)</li>
+            <li>Magnolia Mind — Vanilla Tangerine (midday)</li>
+          </ul>
         </div>
-        <div class="result-price-block">
-          <div class="result-price" id="result-price">$44</div>
-          <div class="result-price-sub">CAD / month</div>
-          <div style="font-size:11px; color:rgba(245,237,228,0.3); letter-spacing:1px; margin-bottom:20px;">Free shipping included</div>
-          <a href="index.html#products" class="result-add-btn" style="text-decoration:none;display:block;text-align:center;">Get Started →</a>
+        <div class="bundle-right">
+          <div class="bundle-price">$119</div>
+          <div class="bundle-save">Save $28 / month</div>
+          <a href="index.html#bundle" class="bundle-btn">Upgrade to Full Ritual →</a>
         </div>
       </div>
 
-      <!-- Bundle upsell -->
-      <div class="bundle-upsell" id="bundle-upsell-card">
-        <div class="bundle-upsell-text">
-          <div class="bundle-upsell-label">Complete the Ritual</div>
-          <div class="bundle-upsell-title">The Complete Ritual Bundle</div>
-          <p class="bundle-upsell-desc">Sleep deeply. Glow visibly. Think clearly. Add all three Magnolia blends and address every symptom in one intentional daily practice.</p>
-        </div>
-        <div class="bundle-upsell-right">
-          <div class="bundle-upsell-price">$119</div>
-          <div class="bundle-upsell-save">Save $28 / month</div>
-          <button class="bundle-upsell-btn" onclick="window.location.href='index.html#bundle'">Upgrade to Bundle →</button>
-        </div>
-      </div>
-
-      <!-- Also consider -->
-      <div class="also-consider" id="also-consider">
+      <div class="also-section" id="also-section">
         <div class="also-title">Also worth considering</div>
         <div class="also-grid" id="also-grid"></div>
       </div>
 
-      <!-- Restart -->
-      <div style="text-align:center; margin-top:64px;">
-        <p style="font-size:13px; color:var(--warmGray); margin-bottom:16px;">Not quite right? Retake the quiz anytime.</p>
-        <button onclick="restartQuiz()" style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:12px 28px;background:none;border:1.5px solid var(--sand);color:var(--warmGray);cursor:pointer;transition:all 0.3s;" onmouseover="this.style.borderColor='var(--darkBrown)';this.style.color='var(--darkBrown)'" onmouseout="this.style.borderColor='var(--sand)';this.style.color='var(--warmGray)'">Retake Quiz</button>
+      <div class="retake-section">
+        <p style="font-size:13px;color:var(--warmGray);margin-bottom:16px;">Not quite right? Retake the quiz anytime.</p>
+        <button class="retake-btn" onclick="restartQuiz()">Retake Quiz</button>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER MINI -->
   <footer class="footer-mini">
     <img src="magnolia_no_bg.png" alt="Magnolia Menopause Wellness" />
-    <div class="footer-mini-links">
-      <a href="index.html">Home</a>
-      <a href="index.html#products">Shop</a>
-      <a href="index.html#faq">FAQ</a>
-      <a href="index.html#why">Our Story</a>
-    </div>
+    <div class="footer-mini-links"><a href="index.html">Home</a><a href="index.html#products">Shop</a><a href="index.html#faq">FAQ</a><a href="index.html#why">Our Story</a></div>
     <p class="footer-mini-copy">© 2026 Magnolia Menopause Wellness</p>
   </footer>
 
   <script>
-    // ── State ──
-    const answers = { stage: null, symptoms: [], priority: null, experience: null };
-    let currentStep = 0;
+    const TYPES={nightBurner:{name:"The Night Burner",emoji:"🌙",color:"#5B4A6B",tagline:"Your body is running hot when it should be cooling down.",bodyH2:"Your brain's thermostat is overwhelmed",description:"Your dominant symptoms are rooted in disrupted thermoregulation and sleep architecture. Declining estrogen is affecting your hypothalamus — the brain's thermostat — causing vasomotor surges (hot flashes and night sweats) that fragment your sleep cycles. The cascade effect is real: broken sleep leads to daytime fatigue, irritability, and cognitive fog. Your body needs cooling, calming, and deep nervous system restoration.",herbs:[{name:"Jujube Seed (Suan Zao Ren)",origin:"Chinese Medicine — 3,000 years",desc:"TCM's premier sleep herb. Contains saponins that naturally soothe your nervous system and promote GABA activity. Traditionally used for insomnia, anxiety, and night sweats. Tastes naturally sweet like dates."},{name:"Reishi Mushroom (Ling Zhi)",origin:"Chinese Medicine — 2,000+ years",desc:"Called the 'King of Mushrooms.' Balances cortisol levels, reduces stress response, and promotes deep restorative sleep. Contains beta-glucans that modulate your immune system during hormonal transition."},{name:"Shatavari (Asparagus racemosus)",origin:"Ayurveda — 3,500 years",desc:"Ayurveda's most revered women's tonic. Clinically shown in a double-blind trial to significantly reduce hot flashes, night sweats, insomnia, and anxiety. Supports both estrogen and progesterone balance."},{name:"Magnesium Bisglycinate",origin:"Modern nutritional science",desc:"The most absorbable form of magnesium. Supports 300+ enzymatic reactions, relaxes muscles, and calms your nervous system. Most menopausal women are deficient."}],ritual:"Evening ritual: Mix one scoop of Magnolia Rest into warm oat milk or water 30–60 minutes before bed. Sip slowly as a replacement for evening wine or screen time. Pair with 5 minutes of slow breathing (4 counts in, 6 counts out).",product:"Magnolia Rest",productFlavor:"Lavender Chocolate",productPrice:"$44",productDesc:"A warm lavender hot chocolate that works while you sleep. Jujube seed, reishi, shatavari, magnesium, passionflower, and lavender cacao — formulated specifically for night-time temperature regulation and deep restoration.",days:["Start your evening ritual tonight. Mix Magnolia Rest into warm milk 45 minutes before bed. No screens after your cup.","Add a magnesium-rich food to dinner: dark leafy greens, pumpkin seeds, or dark chocolate (70%+).","Take a 10-minute warm bath with epsom salts before your Magnolia Rest cup. The temperature drop after the bath triggers sleepiness.","Remove all blue light from your bedroom. Your hypothalamus is already overstimulated — don't add to it.","Try the 4-7-8 breathing technique tonight: inhale 4 counts, hold 7, exhale 8. Do 4 cycles before your first sip.","Eat your last meal 3 hours before bed. Your digestive system and thermoregulation system compete for energy.","Reflect on your week. Notice any changes in night sweat frequency or sleep quality. Most women notice a shift within 7–14 days of consistent use."],alsoConsider:["fadingGlow","foggyMind"]},fadingGlow:{name:"The Fading Glow",emoji:"🌸",color:"#B07070",tagline:"Your radiance isn't gone — it's waiting for the right support.",bodyH2:"Declining estrogen is affecting your skin, hair, and vitality",description:"Your dominant symptoms are driven by declining collagen production and shifting hormonal balance. Estrogen is a key regulator of collagen synthesis, skin hydration, and hair follicle cycling. As it declines, you may notice drier skin, thinning hair, joint stiffness, and vaginal dryness. Simultaneously, cortisol and mood disruption are affecting how you feel in your own body. You need deep nourishment — both structural (collagen, hyaluronic acid) and hormonal (adaptogens that support balance).",herbs:[{name:"Shatavari (Asparagus racemosus)",origin:"Ayurveda — 3,500 years",desc:"The ultimate women's reproductive tonic. Supports estrogen and progesterone balance, reduces vaginal dryness, and nourishes mucous membranes throughout your body. Its name translates to 'she who has a hundred husbands.'"},{name:"Schisandra Berry (Wu Wei Zi)",origin:"Chinese Medicine — 2,000+ years",desc:"The 'five-flavour fruit.' A potent adaptogen that supports liver detoxification, skin radiance, and hormonal metabolism. TCM treasures it for maintaining youthful vitality and emotional resilience."},{name:"White Peony Root (Bai Shao)",origin:"Chinese Medicine — 1,800+ years",desc:"A classical blood-nourishing herb used in women's formulas for centuries. Relaxes muscles, supports liver function, and helps balance hormones. Mildly sweet and gentle."},{name:"Ashwagandha KSM-66",origin:"Ayurveda — 3,000+ years",desc:"The gold standard adaptogen. Clinically shown to reduce cortisol by 28% and support thyroid function. Balances the stress-hormone axis that drives many menopause symptoms."}],ritual:"Morning ritual: Mix one scoop of Magnolia Glow into 250ml cold or room-temperature water, a smoothie, or iced tea. Drink as your first self-care act of the day. Follow with a collagen-supporting breakfast (eggs, berries, citrus).",product:"Magnolia Glow",productFlavor:"Rose Water",productPrice:"$54",productDesc:"A luminous daily blend with marine collagen peptides, ashwagandha, shatavari, schisandra, goji berry, white peony, and hyaluronic acid. Your skin, hair, and hormonal balance — rebuilt from within.",days:["Start your morning with Magnolia Glow mixed into water or a smoothie. Notice the delicate rose-berry flavour.","Add vitamin C-rich foods to every meal today: citrus, bell peppers, strawberries. Vitamin C is essential for your body to actually use the collagen you're taking.","Hydrate intentionally — aim for 2.5L of water today. Hyaluronic acid works best when your body is well-hydrated.","Swap your morning coffee for green tea. The L-theanine supports calm focus while the antioxidants protect your skin from oxidative stress.","Do 10 minutes of gentle stretching or yoga. Schisandra and white peony support joint flexibility, but movement activates them.","Apply a hyaluronic acid serum after washing your face tonight. Support your skin from inside (Magnolia Glow) and outside simultaneously.","Take a progress photo in natural light. Collagen changes are subtle but cumulative — you'll want a baseline to compare at 30 days."],alsoConsider:["nightBurner","foggyMind"]},foggyMind:{name:"The Foggy Mind",emoji:"🧠",color:"#C49340",tagline:"Your brain isn't broken — it's under-supported.",bodyH2:"Declining estrogen is directly affecting your brain chemistry",description:"Your dominant symptoms centre on cognitive function, mental energy, and motivation. Declining estrogen directly affects your hippocampus (memory centre), prefrontal cortex (focus and decision-making), and neurotransmitter production (dopamine, serotonin, acetylcholine). The result: brain fog, word-finding difficulty, lost keys, forgotten names, and a persistent feeling of mental fatigue. You need ingredients that support neuroplasticity, nerve growth, and cellular energy production.",herbs:[{name:"Lion's Mane Mushroom",origin:"Chinese Medicine — 1,000+ years",desc:"Stimulates Nerve Growth Factor (NGF) production — literally helping your brain build new neural connections. Clinically shown to improve memory, focus, and mild cognitive impairment. TCM calls it the 'monkey head mushroom.'"},{name:"Gotu Kola (Centella asiatica)",origin:"Ayurveda — 3,000+ years",desc:"Ayurveda's number one brain herb, known as 'Brahmi of the south.' Enhances memory, concentration, and neural regeneration. Also supports circulation to the brain and collagen production."},{name:"Cordyceps Mushroom",origin:"Chinese Medicine — 1,500+ years",desc:"TCM's premier energy tonic. Increases ATP production at the cellular level — giving you sustained physical and mental energy without caffeine. Supports oxygen utilisation in your brain and muscles."},{name:"Rhodiola Rosea",origin:"Siberian / TCM tradition",desc:"A powerful adaptogen that combats mental fatigue, improves attention span, and supports sustained cognitive energy. Clinically shown to reduce burnout and improve performance under stress."}],ritual:"Morning or early afternoon ritual: Mix one scoop of Magnolia Mind into 250ml cold water, sparkling water, juice, or a smoothie. Drink during your most cognitively demanding work window. Do not take before bed — this is an energising formula.",product:"Magnolia Mind",productFlavor:"Vanilla Tangerine",productPrice:"$49",productDesc:"A bright, energising blend with lion's mane, gotu kola, cordyceps, rhodiola, maca, and B-vitamins. The cognitive support menopause deserves — without caffeine or stimulants.",days:["Mix your first scoop of Magnolia Mind into cold water or a smoothie this morning. Notice the vanilla-citrus brightness.","Write down 3 things you want to accomplish today BEFORE you start. Lion's mane supports focus — give it a target.","Take a 20-minute walk outside. Cordyceps improves oxygen utilisation, and movement + fresh air amplify the cognitive benefits.","Reduce sugar intake today. Blood sugar spikes worsen brain fog dramatically during menopause. Swap refined carbs for protein and healthy fats.","Try a 5-minute 'brain dump' journal session. Write everything on your mind without editing. This clears working memory so lion's mane can help you focus on what matters.","Add omega-3 rich foods today: salmon, walnuts, flaxseed. Omega-3s support the same neural pathways that lion's mane and gotu kola are nourishing.","Reflect on your week. Track your focus and energy levels on a scale of 1–10. Most women notice cognitive improvements within 10–14 days of consistent use."],alsoConsider:["nightBurner","fadingGlow"]},storm:{name:"The Storm",emoji:"⚡",color:"#8B5E83",tagline:"Everything at once — and you deserve support for all of it.",bodyH2:"You're navigating menopause across multiple fronts simultaneously",description:"You're experiencing menopause across multiple fronts simultaneously. Sleep disruption, cognitive changes, physical transformations, and emotional volatility are all present and feeding off each other. This is common — roughly 30% of women experience this pattern. The good news: because the symptoms are interconnected, addressing the root causes (hormonal balance, nervous system regulation, inflammation, and nutrient depletion) creates a cascade of improvement across all areas.",herbs:[{name:"Shatavari",origin:"Ayurveda",desc:"The master women's tonic — addressing hot flashes, mood, sleep, and vaginal dryness from a single root. Present in both Rest and Glow."},{name:"Ashwagandha KSM-66",origin:"Ayurveda",desc:"Cortisol reduction, thyroid support, stress resilience, and hormonal equilibrium. The adaptogen that addresses the most symptoms simultaneously."},{name:"Reishi + Lion's Mane",origin:"Chinese Medicine",desc:"Reishi for sleep and immune balance. Lion's Mane for cognitive function. Together they address the brain-body axis that drives multi-symptom menopause."},{name:"Jujube + Schisandra + Goji",origin:"Chinese Medicine",desc:"TCM's trio of sweet, pleasant-tasting herbs that together nourish yin, calm the mind, support the liver, and restore vitality."}],ritual:"Full-day ritual: Magnolia Glow in the morning (beauty + hormonal balance), Magnolia Mind at midday (focus + energy), Magnolia Rest in the evening (sleep + calm). Three rituals, three moments of self-care, complete coverage.",product:"The Complete Ritual Kit",productFlavor:"All Three Blends",productPrice:"$119",productDesc:"All three Magnolia blends — Rest (Lavender Chocolate), Glow (Rose Water), and Mind (Vanilla Tangerine). Because when everything is happening at once, you deserve support for all of it. Saves $28 per month.",days:["Start with Magnolia Glow in the morning. Just one product first — don't overwhelm yourself. Notice the rose water flavour.","Add Magnolia Rest tonight before bed. Now you have morning and evening rituals bookending your day with support.","Add Magnolia Mind tomorrow at midday. Your three daily rituals are now in place: Glow, Mind, Rest.","Focus on hydration today — 2.5L minimum. Every herb in your kit works better in a well-hydrated body.","Take a 20-minute walk and eat an omega-3 rich dinner. Movement and nutrition multiply the effects of your herb stack.","Do a 5-minute breathing exercise before your Magnolia Rest tonight. You're training your nervous system to downregulate.","Journal briefly: which symptoms feel even slightly different? Multi-symptom improvement often starts subtly. Track it so you can see the trajectory."],alsoConsider:[]},earlyShift:{name:"The Early Shift",emoji:"🌿",color:"#7D9B76",tagline:"You're not imagining it — and you're smart to act now.",bodyH2:"You're in perimenopause — the transition has begun",description:"You're in perimenopause — the transition period that can begin years before menopause itself. Your hormones are starting to fluctuate unpredictably: some months estrogen surges, other months it drops. This volatility causes the symptoms you're experiencing — new anxiety, irregular cycles, first hot flashes, disrupted sleep, or subtle cognitive changes. The earlier you support your body through this transition, the smoother the journey tends to be.",herbs:[{name:"Ashwagandha KSM-66",origin:"Ayurveda",desc:"The ideal starting adaptogen. Stabilises cortisol, supports thyroid, and builds hormonal resilience before the bigger shifts arrive."},{name:"Shatavari",origin:"Ayurveda",desc:"Begins nourishing and balancing your reproductive system now, supporting the estrogen-progesterone dance that defines perimenopause."},{name:"Schisandra Berry",origin:"Chinese Medicine",desc:"Supports your liver's ability to metabolise hormones efficiently — critical during the unpredictable fluctuations of perimenopause."},{name:"Magnesium Bisglycinate",origin:"Modern science",desc:"Most women become depleted in magnesium during their 40s. Restoring levels now supports sleep, mood, muscle relaxation, and hundreds of enzymatic processes."}],ritual:"Start with one product based on your most bothersome symptom. Sleep issues? Start with Magnolia Rest. Skin, mood, or balance? Start with Magnolia Glow. Brain fog or energy? Start with Magnolia Mind. Build from there as your body tells you what it needs.",product:"Magnolia Glow",productFlavor:"Rose Water — a perfect starting point",productPrice:"$54",productDesc:"For perimenopause, Magnolia Glow provides the broadest hormonal foundation — ashwagandha for cortisol, shatavari for estrogen balance, schisandra for liver support, and marine collagen for the skin changes that often arrive first.",days:["Choose your first Magnolia blend based on your most bothersome symptom. Start tonight or tomorrow morning.","Begin tracking your cycle and symptoms in a simple journal or app. Perimenopause patterns reveal a lot about what your body needs.","Add one magnesium-rich food to your daily diet: pumpkin seeds, dark chocolate, spinach, or almonds.","Reduce caffeine by one cup today. During perimenopause, caffeine sensitivity often increases without you realising it.","Move your body for 20 minutes — walking, yoga, swimming. Gentle movement helps your body process fluctuating hormones.","Eat a phytoestrogen-rich food today: flaxseeds (ground), edamame, or chickpeas. These provide gentle plant-based hormonal support.","Reflect: what's your body telling you? Perimenopause is an invitation to listen more closely. The women who thrive through this transition are the ones who start paying attention now."],alsoConsider:["nightBurner","foggyMind"]}};
+    const ALSO_DATA={nightBurner:{name:"Magnolia Rest",flavor:"Lavender Chocolate",price:"$44",desc:"For deep sleep and night-time calm.",dot:"#8B7E9E",url:"index.html#products"},fadingGlow:{name:"Magnolia Glow",flavor:"Rose Water",price:"$54",desc:"For skin, hair, and collagen support.",dot:"#C4956A",url:"index.html#products"},foggyMind:{name:"Magnolia Mind",flavor:"Vanilla Tangerine",price:"$49",desc:"For clarity, memory, and sustained energy.",dot:"#C49340",url:"index.html#products"}};
 
-    // ── Nav scroll ──
-    const nav = document.getElementById('main-nav');
-    const annBar = document.getElementById('ann-bar');
-
-    function updateNav() {
-      const scrolled = window.scrollY > 60;
-      nav.classList.toggle('scrolled', scrolled);
-      nav.style.top = scrolled ? '0' : annBar.offsetHeight + 'px';
-    }
-
-    window.addEventListener('scroll', updateNav);
-    window.addEventListener('resize', updateNav);
-    updateNav();
-
-    // ── Quiz flow ──
-    function startQuiz() {
-      document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function goToStep(n) {
-      const current = document.querySelector('.quiz-step.active');
-      if (current) current.classList.remove('active');
-      const next = document.getElementById('step-' + n);
-      if (next) {
-        next.classList.add('active');
-        currentStep = n;
-        updateProgress(n, 4);
-        document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-
-    function updateProgress(step, total) {
-      const pct = ((step - 1) / total) * 100;
-      document.getElementById('progress-fill').style.width = pct + '%';
-      document.getElementById('progress-label').textContent = 'Question ' + step + ' of ' + total;
-    }
-
-    // Single-select
-    function selectSingle(card, step) {
-      document.querySelectorAll('[data-step="' + step + '"]').forEach(c => c.classList.remove('selected'));
+    let scores={nightBurner:0,fadingGlow:0,foggyMind:0,storm:0,earlyShift:0},resultType=null;
+    const nav=document.getElementById('main-nav'),annBar=document.querySelector('.announcement-bar');
+    function updateNav(){const s=window.scrollY>60;nav.classList.toggle('scrolled',s);nav.style.top=s?'0':annBar.offsetHeight+'px';}
+    window.addEventListener('scroll',updateNav);window.addEventListener('resize',updateNav);updateNav();
+    function startQuiz(){document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'});}
+    function updateProgress(q,t){document.getElementById('progress-fill').style.width=((q-1)/t*100)+'%';document.getElementById('progress-label').textContent='Question '+q+' of '+t;}
+    function selectAnswer(card,n,map){
       card.classList.add('selected');
-      const val = card.dataset.value;
-      if (step === 1) answers.stage = val;
-      if (step === 3) answers.priority = val;
-      if (step === 4) answers.experience = val;
-      document.getElementById('next-' + step).disabled = false;
+      Object.entries(map).forEach(([t,p])=>{scores[t]=(scores[t]||0)+p;});
+      setTimeout(()=>{
+        if(n<7){advanceTo(n+1);}
+        else{resultType=Object.entries(scores).reduce((a,b)=>a[1]>b[1]?a:b)[0];goToEmail();}
+      },380);
     }
-
-    // Multi-select symptoms
-    function toggleSymptom(chip) {
-      chip.classList.toggle('selected');
-      answers.symptoms = Array.from(document.querySelectorAll('.symptom-chip.selected')).map(c => c.dataset.symptom);
-      document.getElementById('next-2').disabled = answers.symptoms.length === 0;
+    function advanceTo(n){
+      const c=document.querySelector('.quiz-step.active');if(c)c.classList.remove('active');
+      document.querySelectorAll('.answer-card').forEach(c=>c.classList.remove('selected'));
+      const nx=document.getElementById('step-'+n);
+      if(nx){nx.classList.add('active');updateProgress(n,7);document.getElementById('quiz-section').scrollIntoView({behavior:'smooth',block:'start'});}
     }
-
-    function goToEmail() {
-      const current = document.querySelector('.quiz-step.active');
-      if (current) current.classList.remove('active');
+    function goToEmail(){
+      const t=TYPES[resultType];
+      document.getElementById('email-emoji').textContent=t.emoji;
+      document.getElementById('email-type-name').textContent="You're "+t.name;
+      const c=document.querySelector('.quiz-step.active');if(c)c.classList.remove('active');
       document.getElementById('step-email').classList.add('active');
-      document.getElementById('progress-fill').style.width = '100%';
-      document.getElementById('progress-label').textContent = 'Almost done';
-      document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('progress-fill').style.width='100%';
+      document.getElementById('progress-label').textContent='Almost done';
+      document.getElementById('quiz-section').scrollIntoView({behavior:'smooth',block:'start'});
     }
-
-    function submitAndShowResults() {
-      const email = document.getElementById('email-input').value.trim();
-      // In production, POST email to your email service here
-      // For now, just proceed to results
+    function submitEmail(){
+      // TODO: Connect to Klaviyo — POST email + firstName + menopause_type (resultType) to your list
       showResults();
     }
-
-    function showResults() {
-      document.getElementById('quiz-section').style.display = 'none';
-      document.getElementById('results-section').style.display = 'block';
+    function showResults(){
+      document.getElementById('quiz-section').style.display='none';
       buildResults();
-      document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('results-section').style.display='block';
+      window.scrollTo({top:0,behavior:'smooth'});
     }
-
-    // ── Recommendation Logic ──
-    const PRODUCTS = {
-      rest: {
-        name: 'Magnolia Rest',
-        flavor: 'Lavender Chocolate',
-        price: '$44',
-        desc: 'A warm lavender hot chocolate that works while you sleep. Magnesium, jujube seed, reishi, and L-theanine quiet a racing mind and ease night-time temperature swings.',
-        color: 'linear-gradient(135deg, #8B9E7E, #9E8AAA)',
-        whyMap: {
-          'sleep-issues': 'Magnesium bisglycinate & L-theanine target your sleep issues directly',
-          'night-sweats': 'Shatavari & reishi are clinically linked to reduced night sweat intensity',
-          'mood-swings': 'Passionflower calms cortisol-driven mood fluctuations before bed',
-          'hot-flashes': 'Shatavari supports hormonal balance to reduce vasomotor symptoms',
-          'sleep': 'Sleep is your #1 priority — Rest is built exactly for this',
-        }
-      },
-      glow: {
-        name: 'Magnolia Glow',
-        flavor: 'Rose Water',
-        price: '$54',
-        desc: 'A light rose-berry water that rebuilds collagen, brightens skin, and strengthens hair from the inside out. Marine collagen, ashwagandha, and schisandra berry — the beauty supplement menopause deserves.',
-        color: 'linear-gradient(135deg, #C4956A, #C4886A)',
-        whyMap: {
-          'skin-hair': 'Marine collagen (5g) + biotin + hyaluronic acid directly address your skin & hair changes',
-          'hot-flashes': 'Ashwagandha KSM-66 is one of the most studied herbs for hot flash reduction',
-          'joint-pain': 'Hyaluronic acid + collagen support joint cushioning and flexibility',
-          'weight-changes': 'Schisandra berry supports metabolic balance during the transition',
-          'hotflashes': 'Reducing hot flashes is your priority — ashwagandha & shatavari in Glow are your allies',
-        }
-      },
-      mind: {
-        name: 'Magnolia Mind',
-        flavor: 'Vanilla Tangerine',
-        price: '$49',
-        desc: 'A creamy vanilla creamsicle that cuts through the fog. Lion\'s mane, gotu kola, rhodiola, and a full B-complex restore clarity, memory, and sustained energy.',
-        color: 'linear-gradient(135deg, #7B4F6A, #5A3650)',
-        whyMap: {
-          'brain-fog': 'Lion\'s mane promotes neurogenesis — the science-backed answer to cognitive fog',
-          'low-energy': 'Rhodiola & cordyceps provide sustained energy without stimulants',
-          'mood-swings': 'Gotu kola & B-vitamins stabilize mood through the nervous system',
-          'energy': 'Energy and clarity are your priority — Mind delivers both without caffeine',
-          'myself': 'Feeling whole again starts with your mind — clarity unlocks everything else',
-        }
-      },
-      bundle: {
-        name: 'The Complete Ritual',
-        flavor: 'All Three Blends',
-        price: '$119',
-        desc: 'Sleep deeply. Glow visibly. Think clearly. Every Magnolia blend working together as one intentional daily ritual — the most complete response to menopause wellness.',
-        color: 'linear-gradient(135deg, #5A3650, #7B4F6A)',
-        whyMap: {
-          'myself': 'Feeling like yourself again requires addressing all symptom clusters — the bundle does exactly that',
-          'multi': 'You\'re managing symptoms across multiple areas — the complete ritual addresses them all',
-        }
-      }
-    };
-
-    function buildResults() {
-      // Score products
-      const scores = { rest: 0, glow: 0, mind: 0 };
-      const syms = answers.symptoms;
-      const pri = answers.priority;
-
-      // Symptom scoring
-      if (syms.includes('sleep-issues')) scores.rest += 3;
-      if (syms.includes('night-sweats')) { scores.rest += 2; scores.glow += 1; }
-      if (syms.includes('hot-flashes')) { scores.glow += 2; scores.rest += 1; }
-      if (syms.includes('skin-hair')) scores.glow += 3;
-      if (syms.includes('joint-pain')) scores.glow += 2;
-      if (syms.includes('brain-fog')) scores.mind += 3;
-      if (syms.includes('low-energy')) scores.mind += 2;
-      if (syms.includes('mood-swings')) { scores.mind += 1; scores.rest += 1; }
-      if (syms.includes('weight-changes')) scores.glow += 1;
-
-      // Priority scoring (double weight)
-      if (pri === 'sleep') scores.rest += 4;
-      if (pri === 'hotflashes') scores.glow += 4;
-      if (pri === 'energy') scores.mind += 4;
-      if (pri === 'myself') { scores.rest += 1; scores.glow += 1; scores.mind += 1; }
-
-      // Determine recommendation
-      const maxScore = Math.max(scores.rest, scores.glow, scores.mind);
-      const total = scores.rest + scores.glow + scores.mind;
-      const allSimilar = (maxScore - Math.min(scores.rest, scores.glow, scores.mind)) <= 3;
-      const manySymptoms = syms.length >= 5;
-      const wantsAll = pri === 'myself';
-
-      let primary;
-      let alsoProducts = [];
-
-      if (wantsAll || (manySymptoms && allSimilar)) {
-        primary = 'bundle';
-      } else if (scores.rest >= maxScore) {
-        primary = 'rest';
-        alsoProducts = ['glow', 'mind'].filter(p => scores[p] > 2);
-      } else if (scores.glow >= maxScore) {
-        primary = 'glow';
-        alsoProducts = ['rest', 'mind'].filter(p => scores[p] > 2);
-      } else {
-        primary = 'mind';
-        alsoProducts = ['rest', 'glow'].filter(p => scores[p] > 2);
-      }
-
-      const prod = PRODUCTS[primary];
-
-      // Build why-list
-      const whyReasons = [];
-      if (prod.whyMap[pri]) whyReasons.push(prod.whyMap[pri]);
-      syms.forEach(s => {
-        if (prod.whyMap[s] && whyReasons.length < 4) whyReasons.push(prod.whyMap[s]);
-      });
-      if (primary === 'bundle' && prod.whyMap['multi'] && !whyReasons.includes(prod.whyMap['multi'])) {
-        whyReasons.unshift(prod.whyMap['multi']);
-      }
-      if (whyReasons.length === 0) whyReasons.push('This blend is the strongest match for your symptom profile');
-
-      // Render primary
-      document.getElementById('result-name').textContent = prod.name;
-      document.getElementById('result-flavor').textContent = prod.flavor;
-      document.getElementById('result-desc').textContent = prod.desc;
-      document.getElementById('result-price').textContent = prod.price;
-      document.getElementById('result-primary-card').style.background = prod.color.replace('135deg', '135deg, #5A3650 0%');
-
-      // Fix gradient for bundle
-      if (primary === 'bundle') {
-        document.getElementById('result-primary-card').style.background = 'linear-gradient(135deg, #2A2118, #5A3650)';
-        document.getElementById('result-primary-card').querySelector('.result-price-sub').textContent = 'CAD / month · Saves $28';
-        document.getElementById('bundle-upsell-card').style.display = 'none';
-      }
-
-      const whyList = document.getElementById('result-why-list');
-      whyList.innerHTML = whyReasons.map(r => `<li>${r}</li>`).join('');
-
-      // Personalized title
-      const titles = {
-        rest: 'You need rest — real, deep rest.',
-        glow: 'Your glow is waiting to come back.',
-        mind: 'Your clarity is within reach.',
-        bundle: 'You deserve the complete picture.'
-      };
-      document.getElementById('results-title').textContent = titles[primary];
-
-      const subs = {
-        rest: 'Your symptoms point clearly to sleep disruption as the core issue. Here\'s what we recommend.',
-        glow: 'Your body is asking for nourishment from within. Here\'s the formula built for that.',
-        mind: 'The fog is real — and it\'s addressable. Here\'s what the science says to use.',
-        bundle: 'You\'re navigating symptoms across every dimension. The complete ritual addresses them all.'
-      };
-      document.getElementById('results-sub').textContent = subs[primary];
-
-      // Also consider
-      if (alsoProducts.length > 0) {
-        const alsoData = {
-          rest: { color: '#8B9E7E', desc: 'For deep sleep and night-time calm.' },
-          glow: { color: '#C4956A', desc: 'For skin, hair, and collagen support.' },
-          mind: { color: '#7B4F6A', desc: 'For clarity, memory, and energy.' }
-        };
-        document.getElementById('also-grid').innerHTML = alsoProducts.map(p => {
-          const pd = PRODUCTS[p];
-          const ad = alsoData[p];
-          return `
-            <div class="also-card" onclick="window.location.href='index.html#products'">
-              <div class="also-dot" style="background:${ad.color};"></div>
-              <div class="also-name">${pd.name}</div>
-              <div class="also-flavor">${pd.flavor}</div>
-              <p class="also-desc">${ad.desc}</p>
-            </div>`;
-        }).join('');
-      } else {
-        document.getElementById('also-consider').style.display = 'none';
-      }
+    function buildResults(){
+      const t=TYPES[resultType],c=t.color;
+      document.getElementById('result-hero').style.background='linear-gradient(165deg,'+c+'ee 0%,'+c+'99 100%)';
+      document.getElementById('result-emoji').textContent=t.emoji;
+      document.getElementById('result-name').textContent=t.name;
+      document.getElementById('result-tagline').textContent=t.tagline;
+      document.getElementById('result-body-h2').textContent=t.bodyH2;
+      document.getElementById('result-description').textContent=t.description;
+      document.getElementById('herb-list').innerHTML=t.herbs.map(h=>`<div class="herb-card" style="border-left:3px solid ${c};"><div class="herb-name">${h.name}</div><div class="herb-origin" style="color:${c};">${h.origin}</div><div class="herb-desc">${h.desc}</div></div>`).join('');
+      document.getElementById('ritual-text').textContent=t.ritual;
+      document.getElementById('day-plan').innerHTML=t.days.map((d,i)=>`<div class="day-row" onclick="toggleDay(this,'${c}')"><div class="day-row-header"><div class="day-row-left"><div class="day-num" id="dn${i}">${i+1}</div><span class="day-label">Day ${i+1}</span></div><span class="day-plus">+</span></div><div class="day-content">${d}</div></div>`).join('');
+      document.getElementById('cta-section').style.background='linear-gradient(135deg,'+c+'10,'+c+'22)';
+      document.getElementById('cta-section').style.borderColor=c+'33';
+      document.getElementById('cta-badge').style.background=c;
+      document.getElementById('cta-product-name').textContent=t.product;
+      document.getElementById('cta-product-flavor').textContent=t.productFlavor;
+      document.getElementById('cta-product-desc').textContent=t.productDesc;
+      document.getElementById('cta-price').textContent=t.productPrice;
+      if(resultType==='storm'){document.getElementById('bundle-section').style.display='none';document.getElementById('cta-badge').textContent='Your Complete Protocol';document.getElementById('cta-main-btn').textContent='Get The Complete Ritual — 20% Off';}
+      const alsoTypes=t.alsoConsider.filter(x=>ALSO_DATA[x]);
+      if(alsoTypes.length>0){document.getElementById('also-grid').innerHTML=alsoTypes.map(x=>{const a=ALSO_DATA[x];return`<a href="${a.url}" class="also-card"><div class="also-dot" style="background:${a.dot};"></div><div class="also-name">${a.name}</div><div class="also-flavor">${a.flavor}</div><p class="also-desc">${a.desc}</p><div class="also-price">${a.price} CAD/month</div></a>`;}).join('');}
+      else{document.getElementById('also-section').style.display='none';}
     }
-
-    function restartQuiz() {
-      answers.stage = null;
-      answers.symptoms = [];
-      answers.priority = null;
-      answers.experience = null;
-
-      document.querySelectorAll('.answer-card.selected').forEach(c => c.classList.remove('selected'));
-      document.querySelectorAll('.symptom-chip.selected').forEach(c => c.classList.remove('selected'));
-      document.querySelectorAll('.quiz-btn-next').forEach(b => b.disabled = true);
-
-      document.getElementById('results-section').style.display = 'none';
-      document.getElementById('quiz-section').style.display = 'flex';
-      document.getElementById('also-consider').style.display = '';
-      document.getElementById('bundle-upsell-card').style.display = '';
-
-      goToStep(1);
-      document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+    function toggleDay(row,color){
+      row.classList.toggle('open');
+      const num=row.querySelector('.day-num');
+      num.style.background=row.classList.contains('open')?color:'var(--sand)';
+      num.style.color=row.classList.contains('open')?'#fff':'var(--darkBrown)';
+    }
+    function restartQuiz(){
+      scores={nightBurner:0,fadingGlow:0,foggyMind:0,storm:0,earlyShift:0};resultType=null;
+      document.querySelectorAll('.answer-card').forEach(c=>c.classList.remove('selected'));
+      document.getElementById('first-name-input').value='';document.getElementById('email-input').value='';
+      document.getElementById('results-section').style.display='none';
+      const qs=document.getElementById('quiz-section');qs.style.display='flex';
+      const cur=document.querySelector('.quiz-step.active');if(cur)cur.classList.remove('active');
+      document.getElementById('step-1').classList.add('active');
+      document.getElementById('progress-fill').style.width='0%';
+      document.getElementById('progress-label').textContent='Question 1 of 7';
+      qs.scrollIntoView({behavior:'smooth'});
     }
   </script>
 </body>
